@@ -8,12 +8,17 @@ namespace PmsAgentManagement.Hubs
 {
     public class AgentHub : Hub<IProxyClient>
     {
-        private readonly IHttpApi _api = new HttpNpbApi();
+        private readonly IHttpApi _api;
+
+        public AgentHub()
+        {
+            _api = new HttpNpbApi(); //Не работает DI через сервис контейнер
+        }
         
-        public void Request(string request)
+        public string Request(string request)
         {
             Console.WriteLine(request);
-            Clients.Caller.AddMessage(_api.GetData());
+            return _api.GetData();
         }
 
         public void Register(long userId)

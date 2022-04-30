@@ -1,35 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using PmsAgentProxy.Clients;
+using PmsAgentProxy.Util;
 
 namespace PmsAgentProxy.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly IClient _client;
+        
+        public HomeController(IClient client)
         {
-            return View();
+            _client = client;
         }
-
-        public ActionResult About()
+        
+        public XmlActionResult SendData()
         {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
-
-        public void SendData()
-        {
-            var signalClient = new SignalRClient();
-            signalClient.connection();
+            var result = _client.Connection();
+            
+            Console.WriteLine(result);
+            
+            return new XmlActionResult(result);
         }
     }
 }

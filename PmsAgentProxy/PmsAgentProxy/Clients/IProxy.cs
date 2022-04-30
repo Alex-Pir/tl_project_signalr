@@ -6,5 +6,7 @@ namespace PmsAgentProxy.Clients
     {
         void SendRequest(string data);
         void RegisterResponseHandler();
+        string ResultMessage { set; get; }
+        bool Status { set; get; }
     }
 }

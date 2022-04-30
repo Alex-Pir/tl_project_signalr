@@ -1,28 +1,30 @@
 ﻿using System;
+using System.Threading;
 
 namespace PmsAgentProxy.Clients
 {
-    public class SignalRClient
+    public class SignalRClient : IClient
     {
 
-        private IProxy _proxy;
+        private readonly IProxy _proxy;
 
         public SignalRClient()
         {
             _proxy = new HubProxy();
         }
 
-        public void connection()
+        public string Connection()
         {
-            try
+           
+            //_proxy.RegisterResponseHandler();
+            _proxy.SendRequest("Hello");
+
+            while (_proxy.Status != true)
             {
-                _proxy.RegisterResponseHandler();
-                _proxy.SendRequest("Hello");
+                Thread.Sleep(300);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        } 
+
+            return _proxy.ResultMessage;
+        }
     }
 }

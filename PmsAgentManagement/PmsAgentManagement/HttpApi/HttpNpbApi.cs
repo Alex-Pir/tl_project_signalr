@@ -1,25 +1,39 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Configuration;
+using PmsAgentManagement.Services.RemoteServices;
 
 namespace PmsAgentManagement.HttpApi
 {
     public class HttpNpbApi : IHttpApi
     {
-        private const string ResponseFormat = "xml";
 
-        private readonly HttpClient _client = new HttpClient();
+        private readonly ServiceTLConfigSection _service;
+
+        public HttpNpbApi()
+        {
+            RemoteServicesConfigGroup group = (RemoteServicesConfigGroup)WebConfigurationManager.OpenWebConfiguration("/")
+                .GetSectionGroup("remoteServices");
+
+            if (group == null)
+            {
+                throw new Exception("Service configuration not found");
+            }
+            
+            _service = (ServiceTLConfigSection)group.Sections.Get("serviceTL");
+        }
         
         public string GetData()
         {
             string result = "";
             using(var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://api.nbp.pl/api/");
+                client.BaseAddress = new Uri(_service.Url);
                 client.DefaultRequestHeaders.Accept.Clear();
-                //GET Method
                 
-                HttpResponseMessage response = client.GetAsync($"exchangerates/tables/A/?format={ResponseFormat}").Result;
+                //GET Method
+                HttpResponseMessage response = client.GetAsync(_service.Page).Result;
                 
                 if (response.IsSuccessStatusCode)
                 {
