@@ -15,12 +15,10 @@ namespace PmsAgentProxy.Controllers
             _client = client;
         }
         
-        public XmlActionResult SendData()
+        [HttpPost]
+        public XmlActionResult SendData(string parameter)
         {
-            var result = _client.Connection();
-            
-            Console.WriteLine(result);
-            
+            var result = _client.GetMessage(parameter);
             return new XmlActionResult(result);
         }
     }
