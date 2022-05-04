@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using Microsoft.AspNet.SignalR.Client;
+using PmsAgentProxy.Services.RemoteServices;
 
 namespace PmsAgentProxy.Clients
 {
     public class HubProxy : IProxy
     {
-        private const string HubName = "AgentHub";
-        private readonly string _connection = "http://localhost:5000/";
-        private IHubProxy _hubProxy;
+        private readonly IHubProxy _hubProxy;
         public string ResultMessage { get; set; }
         public bool Status { get; set; }
         public HubProxy()
         {
+            ServiceConfigSection service = RemoteServicesConfigGroup.GetServiceConfig();
+            
             ResultMessage = "";
-            HubConnection hubConnection = new HubConnection(_connection);
-            _hubProxy = hubConnection.CreateHubProxy(HubName);
+            
+            HubConnection hubConnection = new HubConnection(service.Url);
+            
+            _hubProxy = hubConnection.CreateHubProxy(service.Hub);
             hubConnection.Start().Wait();
         }
         
@@ -36,14 +40,6 @@ namespace PmsAgentProxy.Clients
                 {
                     ResultMessage = task.Result;
                 }
-            });
-        }
-
-        public void RegisterResponseHandler()
-        {
-            _hubProxy.On<string>("AddMessage", param =>
-            {
-                Console.WriteLine(param);
             });
         }
     }

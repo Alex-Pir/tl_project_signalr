@@ -2,6 +2,6 @@
 {
     public interface IClient
     {
-        string Connection();
+        string GetMessage(string param);
     }
 }

@@ -13,11 +13,9 @@ namespace PmsAgentProxy.Clients
             _proxy = new HubProxy();
         }
 
-        public string Connection()
+        public string GetMessage(string parameter)
         {
-           
-            //_proxy.RegisterResponseHandler();
-            _proxy.SendRequest("Hello");
+            _proxy.SendRequest(parameter);
 
             while (_proxy.Status != true)
             {
