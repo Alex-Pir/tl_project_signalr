@@ -23,9 +23,9 @@ namespace PmsAgentProxy.Clients
             hubConnection.Start().Wait();
         }
         
-        public void SendRequest(string data)
+        public async Task SendRequest(string data)
         {
-            _hubProxy.Invoke<string>("Request", data).ContinueWith(task =>
+            await _hubProxy.Invoke<string>("Request", data).ContinueWith(task =>
             {
                 Status = true;
 
