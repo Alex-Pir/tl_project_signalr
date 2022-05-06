@@ -9,13 +9,9 @@ namespace PmsAgentProxy.Clients
     public class HubProxy : IProxy
     {
         private readonly IHubProxy _hubProxy;
-        public string ResultMessage { get; set; }
-        public bool Status { get; set; }
         public HubProxy()
         {
             ServiceConfigSection service = RemoteServicesConfigGroup.GetServiceConfig();
-            
-            ResultMessage = "";
             
             HubConnection hubConnection = new HubConnection(service.Url);
             
@@ -23,24 +19,24 @@ namespace PmsAgentProxy.Clients
             hubConnection.Start().Wait();
         }
         
-        public async Task SendRequest(string data)
+        public async Task<string> SendRequest(string data)
         {
-            await _hubProxy.Invoke<string>("Request", data).ContinueWith(task =>
+           string result = await _hubProxy.Invoke<string>("Request", data).ContinueWith(task =>
             {
-                Status = true;
-
                 if (task.IsFaulted)
                 {
                     if (task.Exception != null)
                     {
-                        ResultMessage = $"There was an error calling send: (0), {task.Exception.GetBaseException()}";
+                        throw new Exception($"There was an error calling send: (0), {task.Exception.GetBaseException()}");
                     }
+
+                    throw new Exception("Unable to retrieve data from remote service");
                 }
-                else
-                {
-                    ResultMessage = task.Result;
-                }
+               
+                return task.Result;
             });
+
+           return result;
         }
     }
 }

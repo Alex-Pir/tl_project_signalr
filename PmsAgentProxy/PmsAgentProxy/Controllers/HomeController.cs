@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using PmsAgentProxy.Clients;
@@ -8,18 +9,27 @@ namespace PmsAgentProxy.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IClient _client;
+        private readonly IProxy _proxy;
         
-        public HomeController(IClient client)
+        public HomeController(IProxy proxy)
         {
-            _client = client;
+            _proxy = proxy;
         }
         
         [HttpPost]
-        public XmlActionResult SendData(string parameter)
+        public async Task<XmlActionResult> SendData(string parameter)
         {
-            var result = _client.GetMessage(parameter);
-            return new XmlActionResult(result);
+            try
+            {
+                var response = await _proxy.SendRequest(parameter);
+                return new XmlActionResult(response);
+            }
+            catch (Exception ex)
+            {
+                //TODO добавить логирование
+            }
+
+            return new XmlActionResult("");
         }
     }
 }

@@ -7,7 +7,7 @@ namespace PmsAgentProxy.Util
     {
         public override void Load()
         {
-            Bind<IClient>().To<SignalRClient>()
+            Bind<IProxy>().To<HubProxy>()
                 .InSingletonScope();
         }
     }
