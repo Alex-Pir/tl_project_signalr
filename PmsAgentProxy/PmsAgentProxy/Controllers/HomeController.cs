@@ -26,7 +26,7 @@ namespace PmsAgentProxy.Controllers
             }
             catch (Exception ex)
             {
-                //TODO добавить логирование
+                throw;
             }
 
             return new XmlActionResult("");

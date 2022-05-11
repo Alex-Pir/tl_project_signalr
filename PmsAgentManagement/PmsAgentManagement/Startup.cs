@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(PmsAgentManagement.Startup))]
