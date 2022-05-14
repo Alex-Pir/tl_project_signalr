@@ -10,6 +10,8 @@ namespace PmsAgentProxy.Clients
         private const string MethodRegister = "Register";
         private const string MethodRequest = "Request";
         private readonly IHubProxy _hubProxy;
+
+        private string _response;
         
         public HubProxy()
         {
@@ -30,12 +32,24 @@ namespace PmsAgentProxy.Clients
                 throw new Exception("Error connect to server");
             }
         }
-        
+
+        public void RegisterResponseHandler()
+        {
+            _hubProxy.On<string>("AddMessage", async i =>
+            {
+                await PrepareResponse(i);
+            });
+        }
+
+        private async Task PrepareResponse(string message)
+        {
+            _response = message;
+        }
         public async Task<string> SendRequest(string guid, string data)
         {
-            var result = await _hubProxy.Invoke<Task<string>>(MethodRequest, guid, data);
+            await _hubProxy.Invoke(MethodRequest, guid, data);
 
-            return result.Result;
+            return _response;
         }
     }
 }

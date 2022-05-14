@@ -22,7 +22,7 @@ namespace PmsAgentManagement.Hubs
            // _userConnections = new Dictionary<string, Connection>();
         }
         
-        public Task Request(string guid, string request)
+        public void Request(string guid, string request)
         {
             var connection = _userConnections[guid];
 
@@ -32,7 +32,7 @@ namespace PmsAgentManagement.Hubs
             }
             
             var response = _api.GetData();
-            return Clients.User(connection.ConnectionId).AddMessage(response);
+            Clients.Client(connection.ConnectionId).AddMessage(response);
         }
 
         public bool Register(string guid)

@@ -21,6 +21,7 @@ namespace PmsAgentProxy.Controllers
         {
             try
             {
+                _proxy.RegisterResponseHandler();
                 await _proxy.RegisterToServer(guid);
                 var response = await _proxy.SendRequest(guid, parameter);
                 return new XmlActionResult(response);
