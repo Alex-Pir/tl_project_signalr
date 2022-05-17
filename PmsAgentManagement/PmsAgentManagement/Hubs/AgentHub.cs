@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
@@ -14,24 +15,26 @@ namespace PmsAgentManagement.Hubs
     {
         private readonly IHttpApi _api;
 
-        private static Dictionary<string, ITrackingConnection> _userConnections = new Dictionary<string, ITrackingConnection>();
+        private static readonly Dictionary<string, ITrackingConnection> _userConnections = new Dictionary<string, ITrackingConnection>();
 
         public AgentHub()
         {
             _api = new HttpNpbApi(); //Не работает DI через сервис контейнер
-           // _userConnections = new Dictionary<string, Connection>();
         }
         
         public void Request(string guid, string request)
         {
-            var connection = _userConnections[guid];
+            _userConnections.TryGetValue(guid, out var connection);     
 
-            if (!connection.IsAlive)
+            if (connection == null || !connection.IsAlive)
             {
                 throw new Exception("Connection is died");
             }
             
             var response = _api.GetData();
+            
+            //Thread.Sleep(3000);
+            
             Clients.Client(connection.ConnectionId).AddMessage(response);
         }
 
@@ -43,14 +46,15 @@ namespace PmsAgentManagement.Hubs
 
             try
             {
-                if (connection != null && connection.IsAlive)
+                if (connection == null || !connection.IsAlive)
                 {
-                    _userConnections.Remove(guid);
-                    _userConnections.Add(guid, connection);
-                    return true;
+                    throw new Exception("Connection is died");
                 }
+                
+                _userConnections.Remove(guid);
+                _userConnections.Add(guid, connection);
+                return true;
 
-                throw new Exception("Connection is died");
             }
             catch (Exception ex)
             {

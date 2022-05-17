@@ -9,6 +9,7 @@ namespace PmsAgentProxy.Clients
     {
         private const string MethodRegister = "Register";
         private const string MethodRequest = "Request";
+        private readonly HubConnection _hubConnection;
         private readonly IHubProxy _hubProxy;
 
         private string _response;
@@ -17,14 +18,21 @@ namespace PmsAgentProxy.Clients
         {
             ServiceConfigSection service = RemoteServicesConfigGroup.GetServiceConfig();
             
-            HubConnection hubConnection = new HubConnection(service.Url);
+            _hubConnection = new HubConnection(service.Url);
             
-            _hubProxy = hubConnection.CreateHubProxy(service.Hub);
-            hubConnection.Start().Wait();
+            _hubProxy = _hubConnection.CreateHubProxy(service.Hub);
+            
+            _hubConnection.Closed += () => StartConnection().Wait();
+            //_hubConnection.Reconnecting += () => StartConnection().Wait();
         }
 
         public async Task RegisterToServer(string guid)
         {
+            if (_hubConnection.State != ConnectionState.Connected)
+            {
+                await StartConnection();
+            }
+            
             var registerResult = await _hubProxy.Invoke<bool>(MethodRegister, guid);
 
             if (!registerResult)
@@ -45,11 +53,26 @@ namespace PmsAgentProxy.Clients
         {
             _response = message;
         }
+        
         public async Task<string> SendRequest(string guid, string data)
         {
-            await _hubProxy.Invoke(MethodRequest, guid, data);
-
+            try
+            {
+                await _hubProxy.Invoke(MethodRequest, guid, data);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return "Error";
+            }
+            
             return _response;
+        }
+
+        private async Task StartConnection()
+        {
+            await _hubConnection.Start();
+            Console.WriteLine("Start connection");
+            //await SendRequest("test-guid", 'test-');
         }
     }
 }
