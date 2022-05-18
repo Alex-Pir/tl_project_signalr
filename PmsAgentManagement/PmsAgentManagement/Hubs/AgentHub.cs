@@ -33,7 +33,7 @@ namespace PmsAgentManagement.Hubs
             
             var response = _api.GetData();
             
-            //Thread.Sleep(3000);
+            //Thread.Sleep(10000);
             
             Clients.Client(connection.ConnectionId).AddMessage(response);
         }

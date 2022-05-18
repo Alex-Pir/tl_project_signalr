@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 using PmsAgentProxy.Services.RemoteServices;
@@ -63,6 +64,14 @@ namespace PmsAgentProxy.Clients
             catch (InvalidOperationException ex)
             {
                 return "Error";
+                
+                /*
+                var registerResult = await _hubProxy.Invoke<bool>(MethodRegister, guid);
+
+                if (registerResult)
+                {
+                    Thread.Sleep(30000);
+                }*/
             }
             
             return _response;
