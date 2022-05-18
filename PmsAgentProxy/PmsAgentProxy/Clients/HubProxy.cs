@@ -23,15 +23,15 @@ namespace PmsAgentProxy.Clients
         
         public async Task<string> SendRequest(string data)
         {
-            try
-            {
+            /*try
+            {*/
                 string result = await _hubProxy.Invoke<string>(Method, data);
                 return result;
-            }
+            /*}
             catch (InvalidOperationException ex)
             {
                 return "Error";
-            }
+            }*/
         }
 
         public async Task StartConnection()

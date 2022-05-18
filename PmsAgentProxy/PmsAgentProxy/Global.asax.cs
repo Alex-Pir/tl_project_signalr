@@ -23,8 +23,6 @@ namespace PmsAgentProxy
             NinjectModule registrations = new NinjectRegistrations();
             var kernel = new StandardKernel(registrations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
-            
-            //LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
         }
     }
 }
