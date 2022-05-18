@@ -17,7 +17,6 @@ namespace PmsAgentManagement.Hubs
         
         public string Request(string request)
         {
-            Console.WriteLine(request);
             return _api.GetData();
         }
 

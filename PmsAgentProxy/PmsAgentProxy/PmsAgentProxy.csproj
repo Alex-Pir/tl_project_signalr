@@ -216,6 +216,7 @@
         <Compile Include="Clients\HubProxy.cs" />
         <Compile Include="Clients\IProxy.cs" />
         <Compile Include="Controllers\HomeController.cs" />
+        <Compile Include="Exceptions\HubRequestException.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
@@ -241,6 +242,7 @@
         <Folder Include="Models" />
     </ItemGroup>
     <ItemGroup>
+        <None Include="NLog.config" />
         <None Include="packages.config" />
     </ItemGroup>
     <PropertyGroup>
