@@ -17,11 +17,6 @@ namespace PmsAgentManagement
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-			GlobalHost.Configuration.ConnectionTimeout = TimeSpan.FromSeconds(180);
-            GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(270);
-            GlobalHost.Configuration.KeepAlive = TimeSpan.FromSeconds(90);
-
         }
     }
 }
