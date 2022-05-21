@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 using PmsAgentProxy.Services.RemoteServices;
@@ -7,9 +8,12 @@ namespace PmsAgentProxy.Clients
 {
     public class HubProxy : IProxy
     {
-        private const string Method = "Request";
+        private const string MethodRegister = "Register";
+        private const string MethodRequest = "Request";
         private readonly HubConnection _hubConnection;
         private readonly IHubProxy _hubProxy;
+
+        private string _response;
         
         public HubProxy()
         {
@@ -20,23 +24,62 @@ namespace PmsAgentProxy.Clients
             _hubProxy = _hubConnection.CreateHubProxy(service.Hub);
             _hubConnection.Closed += () => StartConnection().Wait();
         }
-        
-        public async Task<string> SendRequest(string data)
+
+		public async Task RegisterToServer(string guid)
         {
-            /*try
-            {*/
-                string result = await _hubProxy.Invoke<string>(Method, data);
-                return result;
-            /*}
+            if (_hubConnection.State != ConnectionState.Connected)
+            {
+                await StartConnection();
+            }
+            
+            var registerResult = await _hubProxy.Invoke<bool>(MethodRegister, guid);
+
+            if (!registerResult)
+            {
+                throw new Exception("Error connect to server");
+            }
+        }
+
+        public void RegisterResponseHandler()
+        {
+            _hubProxy.On<string>("AddMessage", async i =>
+            {
+                await PrepareResponse(i);
+            });
+        }
+
+        private async Task PrepareResponse(string message)
+        {
+            _response = message;
+        }
+        
+        public async Task<string> SendRequest(string guid, string data)
+        {
+            try
+            {
+                await _hubProxy.Invoke(MethodRequest, guid, data);
+            }
             catch (InvalidOperationException ex)
             {
                 return "Error";
-            }*/
+                
+                /*
+                var registerResult = await _hubProxy.Invoke<bool>(MethodRegister, guid);
+
+                if (registerResult)
+                {
+                    Thread.Sleep(30000);
+                }*/
+            }
+            
+            return _response;
         }
 
-        public async Task StartConnection()
+        private async Task StartConnection()
         {
             await _hubConnection.Start();
+            Console.WriteLine("Start connection");
+            //await SendRequest("test-guid", 'test-');
         }
     }
 }

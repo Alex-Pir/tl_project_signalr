@@ -4,7 +4,8 @@ namespace PmsAgentProxy.Clients
 {
     public interface IProxy
     {
-        Task StartConnection();
-        Task<string> SendRequest(string data);
+        void RegisterResponseHandler();
+        Task RegisterToServer(string guid);
+        Task<string> SendRequest(string guid, string data);
     }
 }

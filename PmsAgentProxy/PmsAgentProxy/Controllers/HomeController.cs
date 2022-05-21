@@ -20,12 +20,13 @@ namespace PmsAgentProxy.Controllers
         }
         
         [HttpPost]
-        public async Task<XmlActionResult> SendData(string parameter)
+        public async Task<XmlActionResult> SendData(string guid, string parameter)
         {
             try
             {
-                await _proxy.StartConnection();
-                var response = await _proxy.SendRequest(parameter);
+                _proxy.RegisterResponseHandler();
+                await _proxy.RegisterToServer(guid);
+                var response = await _proxy.SendRequest(guid, parameter);
                 return new XmlActionResult(response);
             }
             catch (Exception ex)

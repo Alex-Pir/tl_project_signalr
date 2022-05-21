@@ -10,7 +10,7 @@ namespace PmsAgentManagement
     {
         public void Configuration(IAppBuilder app)
         {
-			GlobalHost.Configuration.ConnectionTimeout = TimeSpan.FromSeconds(180);
+            GlobalHost.Configuration.ConnectionTimeout = TimeSpan.FromSeconds(180);
             GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(270);
             GlobalHost.Configuration.KeepAlive = TimeSpan.FromSeconds(90);
             app.MapSignalR();
