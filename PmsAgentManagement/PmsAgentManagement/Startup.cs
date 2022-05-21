@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin;
+﻿using System;
+using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(PmsAgentManagement.Startup))]
