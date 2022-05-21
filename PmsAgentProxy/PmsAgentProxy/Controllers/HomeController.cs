@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Xml.Linq;
+using NLog;
+using NLog.Fluent;
 using PmsAgentProxy.Clients;
 using PmsAgentProxy.Util;
 
@@ -9,6 +10,8 @@ namespace PmsAgentProxy.Controllers
 {
     public class HomeController : Controller
     {
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly IProxy _proxy;
         
         public HomeController(IProxy proxy)
@@ -21,15 +24,16 @@ namespace PmsAgentProxy.Controllers
         {
             try
             {
+                await _proxy.StartConnection();
                 var response = await _proxy.SendRequest(parameter);
                 return new XmlActionResult(response);
             }
             catch (Exception ex)
             {
-                throw;
+                Logger.Error(ex, ex.Message);
             }
 
-            return new XmlActionResult("");
+            return new ErrorActionResult("Service Error! Please try again later");
         }
     }
 }
