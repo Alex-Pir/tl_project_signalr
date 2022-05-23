@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.AspNet.SignalR.Infrastructure;
 using Microsoft.AspNet.SignalR.Transports;
 using PmsAgentManagement.HttpApi;
+using PmsAgentManagement.Services;
 
 namespace PmsAgentManagement.Hubs
 {
@@ -15,26 +17,23 @@ namespace PmsAgentManagement.Hubs
     {
         private readonly IHttpApi _api;
 
-        private static readonly Dictionary<string, ITrackingConnection> _userConnections = new Dictionary<string, ITrackingConnection>();
+        //private static readonly Dictionary<string, ITrackingConnection> _userConnections = new Dictionary<string, ITrackingConnection>();
 
+        private readonly Registry _registry;
+        
+        private string _responseMessage = null;
+        
         public AgentHub()
         {
-            _api = new HttpNpbApi(); //Не работает DI через сервис контейнер
+            _api = new HttpNpbApi();
+            _registry = Registry.GetInstance();
         }
         
         public void Request(string guid, string request)
         {
-            _userConnections.TryGetValue(guid, out var connection);     
-
-            if (connection == null || !connection.IsAlive)
-            {
-                throw new Exception("Connection is died");
-            }
+            ITrackingConnection connection = _registry.GetConnection(guid);
             
-            var response = _api.GetData();
-            
-            //Thread.Sleep(10000);
-            
+            string response = _api.GetData();
             Clients.Client(connection.ConnectionId).AddMessage(response);
         }
 
@@ -43,16 +42,9 @@ namespace PmsAgentManagement.Hubs
             var heartBeat = GlobalHost.DependencyResolver.Resolve<ITransportHeartbeat>();
             var connectionId = Context.ConnectionId;
             var connection = heartBeat.GetConnections().FirstOrDefault(c => c.ConnectionId == connectionId);
-
             try
             {
-                if (connection == null || !connection.IsAlive)
-                {
-                    throw new Exception("Connection is died");
-                }
-                
-                _userConnections.Remove(guid);
-                _userConnections.Add(guid, connection);
+                _registry.SetConnection(guid, connection);
                 return true;
 
             }
@@ -65,6 +57,25 @@ namespace PmsAgentManagement.Hubs
         public void ToGroup(long id, string message)
         {
             Clients.Group(id.ToString()).AddMessage(message);
+        }
+
+        public string GetHotelInfo(string guid, string parameter)
+        {
+            ITrackingConnection connection = _registry.GetConnection(guid);
+
+            Clients.Client(connection.ConnectionId).SendRequest(parameter);
+            
+            while (_responseMessage == null)
+            {
+                Thread.Sleep(300);
+            }
+            
+            return _responseMessage;
+        }
+
+        public void SetResponse(string message)
+        {
+            _responseMessage = message;
         }
     }
 }

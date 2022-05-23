@@ -5,5 +5,6 @@ namespace PmsAgentManagement.Hubs
     public interface IProxyClient
     {
         Task AddMessage(string message);
+        Task SendRequest(string message);
     }
 }

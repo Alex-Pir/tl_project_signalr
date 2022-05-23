@@ -46,6 +46,11 @@ namespace PmsAgentProxy.Clients
             {
                 await PrepareResponse(i);
             });
+
+            _hubProxy.On("SendRequest", request =>
+            {
+                _hubProxy.Invoke("SetResponse", "response-test-parameter");
+            });
         }
 
         private async Task PrepareResponse(string message)

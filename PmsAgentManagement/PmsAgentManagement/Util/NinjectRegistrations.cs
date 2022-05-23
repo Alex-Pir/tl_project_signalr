@@ -1,5 +1,8 @@
-﻿using Ninject.Modules;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
+using Ninject.Modules;
 using PmsAgentManagement.HttpApi;
+using PmsAgentManagement.Hubs;
 
 namespace PmsAgentManagement.Util
 {
