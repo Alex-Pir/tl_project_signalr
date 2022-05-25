@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Microsoft.AspNet.SignalR.Transports;
 
@@ -8,8 +9,8 @@ namespace PmsAgentManagement.Services
     {
         private static Registry _instance;
         
-        private static readonly Dictionary<string, ITrackingConnection> _userConnections = new Dictionary<string, ITrackingConnection>();
-        private static object syncRoot = new Object();
+        private static readonly Dictionary<string, string> _streamData = new();
+        private static object syncRoot = new();
 
         private Registry() {}
         
@@ -28,32 +29,17 @@ namespace PmsAgentManagement.Services
             return _instance;
         }
 
-        public void SetConnection(string guid, ITrackingConnection connection)
+        public void SetParameter(string guid, string parameter)
         {
-            if (CheckConnection(connection))
-            {
-                _userConnections.Remove(guid);
-                _userConnections.Add(guid, connection);
-            }
+            _streamData.Remove(guid);
+            _streamData.Add(guid, parameter);
         }
 
-        public ITrackingConnection GetConnection(string guid)
+        public string GetParameter(string guid)
         {
-            _userConnections.TryGetValue(guid, out var connection);
-
-            CheckConnection(connection);
-
-            return connection;
-        }
-
-        private bool CheckConnection(ITrackingConnection connection)
-        {
-            if (connection is not { IsAlive: true })
-            {
-                throw new Exception("Connection is died");
-            }
-
-            return true;
+            _streamData.TryGetValue(guid, out var parameter);
+            
+            return parameter;
         }
     }
 }

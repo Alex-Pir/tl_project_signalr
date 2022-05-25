@@ -25,26 +25,22 @@ namespace PmsAgentManagement.Hubs
         
         public AgentHub()
         {
+            //_api = new HttpNpbApi();
             _api = new HttpNpbApi();
             _registry = Registry.GetInstance();
         }
         
         public void Request(string guid, string request)
         {
-            ITrackingConnection connection = _registry.GetConnection(guid);
-            
             string response = _api.GetData();
-            Clients.Client(connection.ConnectionId).AddMessage(response);
+            Clients.Group(guid).AddMessage(response);
         }
 
         public bool Register(string guid)
         {
-            var heartBeat = GlobalHost.DependencyResolver.Resolve<ITransportHeartbeat>();
-            var connectionId = Context.ConnectionId;
-            var connection = heartBeat.GetConnections().FirstOrDefault(c => c.ConnectionId == connectionId);
             try
             {
-                _registry.SetConnection(guid, connection);
+                Groups.Add(Context.ConnectionId, guid);
                 return true;
 
             }
@@ -61,7 +57,7 @@ namespace PmsAgentManagement.Hubs
 
         public string GetHotelInfo(string guid, string parameter)
         {
-            ITrackingConnection connection = _registry.GetConnection(guid);
+            /*ITrackingConnection connection = _registry.GetConnection(guid);
 
             Clients.Client(connection.ConnectionId).SendRequest(parameter);
             
@@ -70,12 +66,13 @@ namespace PmsAgentManagement.Hubs
                 Thread.Sleep(300);
             }
             
-            return _responseMessage;
+            return _responseMessage;*/
+            return "";
         }
 
-        public void SetResponse(string message)
+        public void SetResponse(string guid, string message)
         {
-            _responseMessage = message;
+            _registry.SetParameter(guid, message);
         }
     }
 }

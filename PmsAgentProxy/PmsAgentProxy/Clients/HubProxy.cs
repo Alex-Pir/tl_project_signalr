@@ -49,7 +49,7 @@ namespace PmsAgentProxy.Clients
 
             _hubProxy.On("SendRequest", request =>
             {
-                _hubProxy.Invoke("SetResponse", "response-test-parameter");
+                _hubProxy.Invoke("SetResponse", "test-guid", "response-test-parameter");
             });
         }
 
