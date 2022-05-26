@@ -10,6 +10,11 @@ namespace PmsAgentProxy.Clients
     {
         private const string MethodRegister = "Register";
         private const string MethodRequest = "Request";
+		private const string ResponseMethod = "AddMessage";
+		
+		private const string ServerRequestMethod = "SendRequest";
+		private const string ResponseForServerMethod = "SetResponse";
+
         private readonly HubConnection _hubConnection;
         private readonly IHubProxy _hubProxy;
 
@@ -42,14 +47,14 @@ namespace PmsAgentProxy.Clients
 
         public void RegisterResponseHandler()
         {
-            _hubProxy.On<string>("AddMessage", async i =>
+            _hubProxy.On<string>(ResponseMethod, async i =>
             {
                 await PrepareResponse(i);
             });
 
-            _hubProxy.On("SendRequest", request =>
+            _hubProxy.On(ServerRequestMethod, request =>
             {
-                _hubProxy.Invoke("SetResponse", "test-guid", "response-test-parameter");
+                _hubProxy.Invoke(ResponseForServerMethod, "test-guid", "response-test-parameter");
             });
         }
 
@@ -67,14 +72,6 @@ namespace PmsAgentProxy.Clients
             catch (InvalidOperationException ex)
             {
                 return "Error";
-                
-                /*
-                var registerResult = await _hubProxy.Invoke<bool>(MethodRegister, guid);
-
-                if (registerResult)
-                {
-                    Thread.Sleep(30000);
-                }*/
             }
             
             return _response;
@@ -83,8 +80,6 @@ namespace PmsAgentProxy.Clients
         private async Task StartConnection()
         {
             await _hubConnection.Start();
-            Console.WriteLine("Start connection");
-            //await SendRequest("test-guid", 'test-');
         }
     }
 }

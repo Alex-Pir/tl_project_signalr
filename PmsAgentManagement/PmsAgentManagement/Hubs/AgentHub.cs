@@ -17,15 +17,12 @@ namespace PmsAgentManagement.Hubs
     {
         private readonly IHttpApi _api;
 
-        //private static readonly Dictionary<string, ITrackingConnection> _userConnections = new Dictionary<string, ITrackingConnection>();
-
         private readonly Registry _registry;
         
         private string _responseMessage = null;
         
         public AgentHub()
         {
-            //_api = new HttpNpbApi();
             _api = new HttpNpbApi();
             _registry = Registry.GetInstance();
         }
@@ -53,21 +50,6 @@ namespace PmsAgentManagement.Hubs
         public void ToGroup(long id, string message)
         {
             Clients.Group(id.ToString()).AddMessage(message);
-        }
-
-        public string GetHotelInfo(string guid, string parameter)
-        {
-            /*ITrackingConnection connection = _registry.GetConnection(guid);
-
-            Clients.Client(connection.ConnectionId).SendRequest(parameter);
-            
-            while (_responseMessage == null)
-            {
-                Thread.Sleep(300);
-            }
-            
-            return _responseMessage;*/
-            return "";
         }
 
         public void SetResponse(string guid, string message)
