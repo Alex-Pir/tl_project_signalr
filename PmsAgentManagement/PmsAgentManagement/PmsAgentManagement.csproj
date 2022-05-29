@@ -159,6 +159,7 @@
         <Compile Include="Hubs\Factories\IHubContextFactory.cs" />
         <Compile Include="Hubs\IProxyClient.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Services\IRegistry.cs" />
         <Compile Include="Services\Registry.cs" />
         <Compile Include="Services\RemoteServices\RemoteServicesConfigGroup.cs" />
         <Compile Include="Services\RemoteServices\ServiceTLConfigSection.cs" />

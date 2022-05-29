@@ -11,6 +11,8 @@ using Ninject.Web.Mvc;
 using Owin;
 using PmsAgentManagement.HttpApi;
 using PmsAgentManagement.Hubs;
+using PmsAgentManagement.Hubs.Factories;
+using PmsAgentManagement.Services;
 using PmsAgentManagement.Util;
 
 [assembly: OwinStartup(typeof(PmsAgentManagement.Startup))]
@@ -27,17 +29,26 @@ namespace PmsAgentManagement
             // внедрение зависимостей
             NinjectModule registrations = new NinjectRegistrations();
             var kernel = new StandardKernel(registrations);
-            //var resolver = new NinjectSignalRDependencyResolver(kernel);
+            /*var resolver = new NinjectSignalRDependencyResolver(kernel);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
-            /*kernel.Bind(typeof(IHubConnectionContext<dynamic>)).ToMethod(context =>
+            
+            kernel.Bind(typeof(IHubConnectionContext<dynamic>)).ToMethod(context =>
                 resolver.Resolve<IConnectionManager>().GetHubContext<AgentHub>().Clients
             ).WhenInjectedInto<IHttpApi>();
 
+            kernel.Bind(typeof(IHubConnectionContext<dynamic>)).ToMethod(context =>
+                resolver.Resolve<IConnectionManager>().GetHubContext<AgentHub>().Clients
+            ).WhenInjectedInto<IRegistry>();
+            
+            kernel.Bind(typeof(IHubConnectionContext<dynamic>)).ToMethod(context =>
+                resolver.Resolve<IConnectionManager>().GetHubContext<AgentHub>().Clients
+            ).WhenInjectedInto<IHubContextFactory>();
+            
             var config = new HubConfiguration
             {
                 Resolver = resolver
-            };
-*/
+            };*/
+
             app.MapSignalR();
         }
     }

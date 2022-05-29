@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
 using PmsAgentManagement.HttpApi;
 using PmsAgentManagement.Hubs.Factories;
+using PmsAgentManagement.Services;
 
 namespace PmsAgentManagement.Util
 {
@@ -9,7 +10,8 @@ namespace PmsAgentManagement.Util
         public override void Load()
         {
             Bind<IHttpApi>().To<HttpNpbApi>();
-            Bind<IHubContextFactory>().To<AgentHubContextFactory>();
+            Bind<IHubContextFactory>().To<AgentHubContextFactory>().InSingletonScope();
+            //Bind<IRegistry>().To<Registry>().InSingletonScope();
         }
     }
 }
