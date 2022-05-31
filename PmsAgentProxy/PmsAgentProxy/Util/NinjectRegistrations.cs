@@ -7,8 +7,8 @@ namespace PmsAgentProxy.Util
     {
         public override void Load()
         {
-            Bind<IProxy>().To<HubProxy>()
-                .InSingletonScope();
+            /*Bind<IProxy>().To<HubProxy>()
+                .InSingletonScope();*/
         }
     }
 }

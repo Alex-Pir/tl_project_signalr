@@ -8,6 +8,7 @@ using Ninject.Modules;
 using Ninject.Web.Mvc;
 using NLog;
 using NLog.Config;
+using PmsAgentProxy.Clients;
 using PmsAgentProxy.Util;
 
 namespace PmsAgentProxy

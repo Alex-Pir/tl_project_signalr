@@ -16,9 +16,9 @@ namespace PmsAgentProxy.Controllers
         private readonly IProxy _proxy;
         private readonly string _guid;
         
-        public HomeController(IProxy proxy)
+        public HomeController()
         {
-            _proxy = proxy;
+            _proxy = HubProxy.GetInstance();
             _guid = GuidConfigSection.GetGuid();
         }
         
