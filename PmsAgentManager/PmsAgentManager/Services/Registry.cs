@@ -30,7 +30,7 @@
             StreamData.Add(guid, parameter);
         }
 
-        public string GetParameter(string guid)
+        public string? GetParameter(string guid)
         {
             StreamData.TryGetValue(guid, out var parameter);
             

@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using PmsAgentProxy.Exceptions;
+using PmsAgentProxy.Services.GuidServices;
 using PmsAgentProxy.Services.RemoteServices;
 
 namespace PmsAgentProxy.Clients
@@ -9,6 +10,7 @@ namespace PmsAgentProxy.Clients
     public class HubProxy : IProxy
     {
         private const byte DisconnectTimeoutMinutes = 6;
+        private const int ReconnectTimeout = 300;
         
         private const string MethodRegister = "Register";
         private const string MethodRequest = "Request";
@@ -21,7 +23,7 @@ namespace PmsAgentProxy.Clients
 
         private string _response;
 
-        private static bool _connectionStart = false;
+        private readonly string _guid;
 
         private static HubProxy _instance;
         private static object syncRoot = new();
@@ -29,6 +31,8 @@ namespace PmsAgentProxy.Clients
         private HubProxy()
         {
             ServiceConfigSection service = RemoteServicesConfigGroup.GetServiceConfig();
+            
+            _guid = GuidConfigSection.GetGuid();
             
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(service.Url)
@@ -38,8 +42,8 @@ namespace PmsAgentProxy.Clients
             
             _hubConnection.Closed += async (error) =>
             {
-                await Task.Delay(new Random().Next(0,5) * 1000);
-                await _hubConnection.StartAsync();
+                await Task.Delay(ReconnectTimeout);
+                await StartHub();
             };
         }
 
@@ -57,8 +61,15 @@ namespace PmsAgentProxy.Clients
 
             return _instance;
         }
+
+        public async Task StartHub()
+        {
+            RegisterResponseHandler();
+            await _hubConnection.StartAsync();
+            await RegisterToServer(_guid);
+        }
         
-		public async Task RegisterToServer(string guid)
+		private async Task RegisterToServer(string guid)
         {
             var registerResult = await _hubConnection.InvokeAsync<bool>(MethodRegister, guid);
 
@@ -68,24 +79,6 @@ namespace PmsAgentProxy.Clients
             }
         }
 
-        public void RegisterResponseHandler()
-        {
-            _hubConnection.On<string>(ResponseMethod, async i =>
-            {
-                await PrepareResponse(i);
-            });
-
-            _hubConnection.On<string>(ServerRequestMethod, request =>
-            {
-                _hubConnection.InvokeAsync(ResponseForServerMethod, "test-guid", "response-test-parameter");
-            });
-        }
-
-        private async Task PrepareResponse(string message)
-        {
-            _response = message;
-        }
-        
         public async Task<string> SendRequest(string guid, string data)
         {
             try
@@ -94,15 +87,28 @@ namespace PmsAgentProxy.Clients
             }
             catch (InvalidOperationException ex)
             {
-                return "Error";
+                throw new HubRequestException("Data could not be retrieved");
             }
             
             return _response;
         }
 
-        public async Task StartConnection()
+        private async Task PrepareResponse(string message)
         {
-            await _hubConnection.StartAsync();
+            _response = message;
+        }
+        
+        private void RegisterResponseHandler()
+        {
+            _hubConnection.On<string>(ResponseMethod, async i =>
+            {
+                await PrepareResponse(i);
+            });
+
+            _hubConnection.On<string>(ServerRequestMethod, request =>
+            {
+                _hubConnection.InvokeAsync(ResponseForServerMethod, _guid, "response-test-parameter");
+            });
         }
     }
 }

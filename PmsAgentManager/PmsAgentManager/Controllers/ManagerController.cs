@@ -12,6 +12,9 @@ namespace PmsAgentManager.Controllers;
 [ApiController]
 public class ManagerController : ControllerBase
 {
+    private const int WaitingTime = 300;
+    private const int DisconnectTime = 120000;
+    
     private readonly IHubContext<AgentHub, IProxyClient> _hubContext;
     private readonly Registry _registry;
     
@@ -29,21 +32,30 @@ public class ManagerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<string> GetHotelInfo(string guid, string parameter)
+    public async Task<IActionResult> GetHotelInfo(string guid, string parameter)
     {
+        int time = 0;
+        
         await _hubContext.Clients.All.SendRequest(parameter);
-        string result = "";
+        
+        string? result = "";
 
-        while (string.IsNullOrEmpty(result))
+        while (string.IsNullOrEmpty(result) && time < DisconnectTime)
         {
             result = _registry.GetParameter(guid);
 
             if (string.IsNullOrEmpty(result))
             {
-                Thread.Sleep(300);
+                Thread.Sleep(WaitingTime);
+                time += WaitingTime;
             }
         }
-            
-        return result;
+
+        if (string.IsNullOrEmpty(result))
+        {
+            BadRequest("Data could not be retrieved");
+        }
+
+        return Ok(result);
     }
 }

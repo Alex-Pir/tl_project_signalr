@@ -9,8 +9,9 @@ namespace PmsAgentProxy
     {
         public void Configuration(IAppBuilder app)
         {
-            var hub = HubProxy.GetInstance();
-            hub.StartConnection().Wait();
+            HubProxy.GetInstance()
+                .StartHub()
+                .Wait();
         }
     }
 }
