@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using PmsAgentProxy.Exceptions;
@@ -11,6 +12,7 @@ namespace PmsAgentProxy.Clients
     {
         private const byte DisconnectTimeoutMinutes = 6;
         private const int ReconnectTimeout = 300;
+        private const int ResponseWaitingEndTime = 1000;
         
         private const string MethodRegister = "Register";
         private const string MethodRequest = "Request";
@@ -83,7 +85,16 @@ namespace PmsAgentProxy.Clients
         {
             try
             {
+                _response = string.Empty;
                 await _hubConnection.InvokeAsync(MethodRequest, guid, data);
+
+                int waitingTime = 0;
+                while (string.IsNullOrEmpty(_response) && waitingTime < ResponseWaitingEndTime)
+                {
+                    Thread.Sleep(ReconnectTimeout);
+                    waitingTime += ReconnectTimeout;
+                }
+                
             }
             catch (InvalidOperationException ex)
             {
@@ -93,17 +104,9 @@ namespace PmsAgentProxy.Clients
             return _response;
         }
 
-        private async Task PrepareResponse(string message)
-        {
-            _response = message;
-        }
-        
         private void RegisterResponseHandler()
         {
-            _hubConnection.On<string>(ResponseMethod, async i =>
-            {
-                await PrepareResponse(i);
-            });
+            _hubConnection.On<string>(ResponseMethod,  message => _response = message);
 
             _hubConnection.On<string>(ServerRequestMethod, request =>
             {

@@ -30,6 +30,11 @@
             StreamData.Add(guid, parameter);
         }
 
+        public void RemoveParameter(string guid)
+        {
+            StreamData.Remove(guid);
+        }
+        
         public string? GetParameter(string guid)
         {
             StreamData.TryGetValue(guid, out var parameter);

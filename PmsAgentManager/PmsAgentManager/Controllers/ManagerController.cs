@@ -36,7 +36,7 @@ public class ManagerController : ControllerBase
     {
         int time = 0;
         
-        await _hubContext.Clients.All.SendRequest(parameter);
+        await _hubContext.Clients.Group(guid).SendRequest(parameter);
         
         string? result = "";
 
@@ -56,6 +56,8 @@ public class ManagerController : ControllerBase
             BadRequest("Data could not be retrieved");
         }
 
+        _registry.RemoveParameter(guid);
+        
         return Ok(result);
     }
 }
