@@ -1,38 +1,25 @@
-﻿namespace PmsAgentManager.Services
+﻿using System.Collections.Concurrent;
+
+namespace PmsAgentManager.Services
 {
-    public class Registry
+    public class Registry : IRegistry
     {
-        private static Registry? _instance;
-        
-        private static readonly Dictionary<string, string> StreamData = new();
-        private static object syncRoot = new();
-
-        private Registry() {}
-        
-        public static Registry GetInstance()
-        {
-            if (_instance != null) 
-            {
-                return _instance;
-            }
-            
-            lock (syncRoot)
-            {
-                _instance ??= new Registry();
-            }
-
-            return _instance;
-        }
+        private static readonly ConcurrentDictionary<string, string> StreamData = new();
 
         public void SetParameter(string guid, string parameter)
         {
-            StreamData.Remove(guid);
-            StreamData.Add(guid, parameter);
+            if (!StreamData.TryAdd(guid, parameter))
+            {
+                throw new Exception("Can not add data to Registry");
+            }
         }
 
         public void RemoveParameter(string guid)
         {
-            StreamData.Remove(guid);
+            if (!StreamData.TryRemove(guid, out var result))
+            {
+                throw new Exception("Can not remove data from Registry");
+            }
         }
         
         public string? GetParameter(string guid)

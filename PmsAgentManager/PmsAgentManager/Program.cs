@@ -1,15 +1,19 @@
 using PmsAgentManager.HttpApi;
 using PmsAgentManager.Hubs;
+using PmsAgentManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var url = builder.Configuration["RemoteService:Url"];
 var page = builder.Configuration["RemoteService:Page"];
 
-if (url != null && page != null)
+if (url == null || page == null)
 {
-    builder.Services.AddSingleton<IHttpApi>(x => new HttpNpbApi(url, page));
+    throw new Exception("Couldn't find settings required settings for remote service");
 }
+
+builder.Services.AddSingleton<IHttpApi>(new HttpNpbApi(url, page));
+builder.Services.AddSingleton<IRegistry, Registry>();
 
 builder.Services.AddControllers();
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using PmsAgentManagement.Hubs;
 using PmsAgentManager.HttpApi;
+using PmsAgentManager.Services;
 
 namespace PmsAgentManager.Hubs
 {
@@ -8,12 +9,12 @@ namespace PmsAgentManager.Hubs
     {
         private readonly IHttpApi _api;
 
-        private readonly Services.Registry _registry;
+        private readonly IRegistry _registry;
 
-        public AgentHub(IHttpApi api)
+        public AgentHub(IHttpApi api, IRegistry registry)
         {
             _api = api;
-            _registry = Services.Registry.GetInstance();
+            _registry = registry;
         }
         
         public void Request(string guid, string request)
@@ -29,10 +30,10 @@ namespace PmsAgentManager.Hubs
                 Groups.AddToGroupAsync(Context.ConnectionId, guid);
                 return true;
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            catch (Exception)
+            { }
+
+            return false;
         }
 
         public void ToGroup(long id, string message)

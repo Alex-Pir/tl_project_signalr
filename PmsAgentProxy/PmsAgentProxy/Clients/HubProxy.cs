@@ -91,12 +91,12 @@ namespace PmsAgentProxy.Clients
                 int waitingTime = 0;
                 while (string.IsNullOrEmpty(_response) && waitingTime < ResponseWaitingEndTime)
                 {
-                    Thread.Sleep(ReconnectTimeout);
+                    await Task.Delay(ReconnectTimeout);
                     waitingTime += ReconnectTimeout;
                 }
                 
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 throw new HubRequestException("Data could not be retrieved");
             }

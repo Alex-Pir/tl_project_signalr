@@ -16,12 +16,12 @@ public class ManagerController : ControllerBase
     private const int DisconnectTime = 120000;
     
     private readonly IHubContext<AgentHub, IProxyClient> _hubContext;
-    private readonly Registry _registry;
+    private readonly IRegistry _registry;
     
-    public ManagerController(IHubContext<AgentHub, IProxyClient> hubContext)
+    public ManagerController(IHubContext<AgentHub, IProxyClient> hubContext, IRegistry registry)
     {
         _hubContext = hubContext;
-        _registry = Registry.GetInstance();
+        _registry = registry;
     }
     
     [HttpGet]
@@ -36,24 +36,28 @@ public class ManagerController : ControllerBase
     {
         int time = 0;
         
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        CancellationToken token = cancellationTokenSource.Token;
+        
         await _hubContext.Clients.Group(guid).SendRequest(parameter);
         
         string? result = "";
 
-        while (string.IsNullOrEmpty(result) && time < DisconnectTime)
+        await Task.Delay(WaitingTime);
+        result = _registry.GetParameter(guid);
+
+        while (string.IsNullOrEmpty(result))
         {
+            await Task.Delay(WaitingTime);
             result = _registry.GetParameter(guid);
 
-            if (string.IsNullOrEmpty(result))
+            if (string.IsNullOrEmpty(result) && time >= DisconnectTime)
             {
-                Thread.Sleep(WaitingTime);
-                time += WaitingTime;
+                //cancellationTokenSource.Cancel();
+                return BadRequest("Data could not be retrieved");
             }
-        }
-
-        if (string.IsNullOrEmpty(result))
-        {
-            BadRequest("Data could not be retrieved");
+            
+            time += WaitingTime;
         }
 
         _registry.RemoveParameter(guid);
