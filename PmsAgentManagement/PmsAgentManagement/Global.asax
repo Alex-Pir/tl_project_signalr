@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="PmsAgentManagement.MvcApplication" Language="C#" %>

@@ -1,11 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.AspNet.SignalR;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
 using NLog;
 using NLog.Config;
+using PmsAgentProxy.Clients;
 using PmsAgentProxy.Util;
 
 namespace PmsAgentProxy
