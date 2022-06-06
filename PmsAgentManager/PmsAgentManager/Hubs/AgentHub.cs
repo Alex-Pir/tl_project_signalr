@@ -11,10 +11,13 @@ namespace PmsAgentManager.Hubs
 
         private readonly IRegistry _registry;
 
-        public AgentHub(IHttpApi api, IRegistry registry)
+        private readonly IConnectionMapping<string> _connections;
+        
+        public AgentHub(IHttpApi api, IRegistry registry, IConnectionMapping<string> connectionMapping)
         {
             _api = api;
             _registry = registry;
+            _connections = connectionMapping;
         }
         
         public void Request(string guid, string request)
@@ -28,6 +31,7 @@ namespace PmsAgentManager.Hubs
             try
             {
                 Groups.AddToGroupAsync(Context.ConnectionId, guid);
+                _connections.Add(guid, Context.ConnectionId);
                 return true;
             }
             catch (Exception)
