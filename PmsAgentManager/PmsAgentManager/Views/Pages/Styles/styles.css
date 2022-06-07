@@ -1,0 +1,24 @@
+.connection-table {
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.connection-table th:first-child, .color td:first-child {
+    text-align: left;
+}
+.connection-table th, .color td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: #fff;
+}
+
+.connection-table td {
+    background: #D8E6F3;
+}
+
+.connection-table th, .color td:first-child {
+    background: #AFCDE7;
+    color: #fff;
+    padding: 10px 20px;
+}

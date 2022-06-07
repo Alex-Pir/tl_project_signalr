@@ -17,20 +17,17 @@ public class ManagerController : ControllerBase
     
     private readonly IHubContext<AgentHub, IProxyClient> _hubContext;
     private readonly IRegistry _registry;
-    private readonly IConnectionMapping<string> _connections;
 
-    public ManagerController(IHubContext<AgentHub, IProxyClient> hubContext, IRegistry registry, IConnectionMapping<string> connections)
+    public ManagerController(IHubContext<AgentHub, IProxyClient> hubContext, IRegistry registry)
     {
         _hubContext = hubContext;
         _registry = registry;
-        _connections = connections;
     }
     
     [HttpGet]
     //[XmlHeader]
     public IActionResult Index()
     {
-        var connections = _connections.GetAllConnections();
         return Ok();
     }
 

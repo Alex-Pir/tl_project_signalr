@@ -1,0 +1,38 @@
+﻿@model Dictionary<string, string>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Список подключений</title>
+    <link href="Styles/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+    <h3>В списке @Model!.Count подключений:</h3>
+    @if (Model.Count > 0)
+    {
+        <table class="connection-table">
+            <thead>
+            <th>Внешний код</th>
+            <th>ID подключения</th>
+            </thead>
+            <tbody>
+            @foreach (var connection in Model)
+            {
+                <tr>
+                    <td>@connection.Value</td>
+                    <td>@connection.Key</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        
+    }
+</div>
+</body>
+</html>

@@ -2,29 +2,23 @@
 
 namespace PmsAgentManager.Services;
 
-public class ConnectionMapping : IConnectionMapping<string>
+public class ConnectionMapping : IConnectionMapping
 {
     private readonly Dictionary<string, string> _connections =
         new Dictionary<string, string>();
 
-    public int Count
-    {
-        get
-        {
-            return _connections.Count;
-        }
-    }
+    public int Count => _connections.Count;
 
-    public void Add(string key, string connectionId)
+    public void Add(string connectionId, string guid)
     {
         lock (_connections)
         {
-            if (_connections.TryGetValue(key, out string? connection))
+            if (_connections.TryGetValue(connectionId, out string? connection))
             {
-                _connections.Remove(key);
+                _connections.Remove(connectionId);
             }
             
-            _connections.Add(key, connectionId);
+            _connections.Add(connectionId, guid);
         }
     }
 
@@ -38,16 +32,16 @@ public class ConnectionMapping : IConnectionMapping<string>
         return string.Empty;
     }
 
-    public IEnumerable<string> GetAllConnections()
+    public Dictionary<string, string> GetAllConnections()
     {
-        return _connections.Values;
+        return _connections;
     }
 
-    public void Remove(string key, string connectionId)
+    public void Remove(string connectionId)
     {
         lock (_connections)
         {
-            _connections.Remove(key);
+            _connections.Remove(connectionId);
         }
     }
 }

@@ -11,9 +11,9 @@ namespace PmsAgentManager.Hubs
 
         private readonly IRegistry _registry;
 
-        private readonly IConnectionMapping<string> _connections;
+        private readonly IConnectionMapping _connections;
         
-        public AgentHub(IHttpApi api, IRegistry registry, IConnectionMapping<string> connectionMapping)
+        public AgentHub(IHttpApi api, IRegistry registry, IConnectionMapping connectionMapping)
         {
             _api = api;
             _registry = registry;
@@ -31,7 +31,7 @@ namespace PmsAgentManager.Hubs
             try
             {
                 Groups.AddToGroupAsync(Context.ConnectionId, guid);
-                _connections.Add(guid, Context.ConnectionId);
+                _connections.Add(Context.ConnectionId, guid);
                 return true;
             }
             catch (Exception)
@@ -48,6 +48,12 @@ namespace PmsAgentManager.Hubs
         public void SetResponse(string guid, string message)
         {
             _registry.SetParameter(guid, message);
+        }
+
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+            _connections.Remove(Context.ConnectionId);
+            return base.OnDisconnectedAsync(exception);
         }
     }
 }

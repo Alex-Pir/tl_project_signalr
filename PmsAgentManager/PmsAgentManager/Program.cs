@@ -14,7 +14,9 @@ if (url == null || page == null)
 
 builder.Services.AddSingleton<IHttpApi>(new HttpNpbApi(url, page));
 builder.Services.AddSingleton<IRegistry, Registry>();
-builder.Services.AddSingleton<IConnectionMapping<string>, ConnectionMapping>();
+builder.Services.AddSingleton<IConnectionMapping, ConnectionMapping>();
+
+builder.Services.AddMvc();
 
 builder.Services.AddControllers();
 

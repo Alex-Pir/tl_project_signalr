@@ -1,9 +1,9 @@
 ﻿namespace PmsAgentManager.Services;
 
-public interface IConnectionMapping<in T>
+public interface IConnectionMapping
 {
-    public void Add(T key, string connectionId);
-    public string GetConnection(T key);
-    public IEnumerable<string> GetAllConnections();
-    public void Remove(T key, string connectionId);
+    public void Add(string connectionId, string guid);
+    public string GetConnection(string key);
+    public Dictionary<string, string> GetAllConnections();
+    public void Remove(string connectionId);
 }
