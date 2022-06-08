@@ -1,19 +1,17 @@
 ﻿@model Dictionary<string, string>
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
-<html>
+<html lang="ru">
 <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Список подключений</title>
-    <link href="Styles/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/css/styles.css" rel="stylesheet" asp-append-version="true" type="text/css" media="screen" runat="server"/>
 </head>
 <body>
 <div>
-    <h3>В списке @Model!.Count подключений:</h3>
+    <h3 class="connection-title">Доступных подключений: @Model!.Count</h3>
     @if (Model.Count > 0)
     {
         <table class="connection-table">
@@ -31,7 +29,6 @@
             }
             </tbody>
         </table>
-        
     }
 </div>
 </body>

@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Include="wwwroot\css\styles.css" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Views" />
     </ItemGroup>
 

@@ -29,7 +29,6 @@ builder.Services.AddSignalR(hubOption =>
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
