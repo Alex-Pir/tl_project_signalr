@@ -9,7 +9,7 @@ namespace PmsAgentProxy
     {
         public void Configuration(IAppBuilder app)
         {
-            HubProxy.GetInstance()
+            HubProxy.GetInstance(new NpbClient())
                 .StartHub()
                 .Wait();
         }

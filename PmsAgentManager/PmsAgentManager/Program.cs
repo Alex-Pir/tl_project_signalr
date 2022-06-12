@@ -1,5 +1,6 @@
 using PmsAgentManager.HttpApi;
 using PmsAgentManager.Hubs;
+using PmsAgentManager.Middlewares;
 using PmsAgentManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,7 @@ builder.Services.AddSingleton<IConnectionMapping, ConnectionMapping>();
 
 builder.Services.AddMvc();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddSignalR(hubOption =>
 {
@@ -37,4 +38,10 @@ app.MapControllers();
 
 app.MapHub<AgentHub>("/signalr");
 
+/*
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/manager"), appBuilder =>
+{
+    appBuilder.UseHeader();
+});
+*/
 app.Run();

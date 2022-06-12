@@ -15,10 +15,10 @@ public class ManagerController : ControllerBase
     private const int WaitingTime = 300;
     private const int DisconnectTime = 120000;
     
-    private readonly IHubContext<AgentHub, IProxyClient> _hubContext;
+    private readonly IHubContext<AgentHub> _hubContext;
     private readonly IRegistry _registry;
 
-    public ManagerController(IHubContext<AgentHub, IProxyClient> hubContext, IRegistry registry)
+    public ManagerController(IHubContext<AgentHub> hubContext, IRegistry registry)
     {
         _hubContext = hubContext;
         _registry = registry;
@@ -39,29 +39,45 @@ public class ManagerController : ControllerBase
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = cancellationTokenSource.Token;
         
-        await _hubContext.Clients.Group(guid).SendRequest(parameter);
+        await _hubContext.Clients.Group(guid).SendCoreAsync("SendRequest", new object?[] {parameter}, token);
         
         string? result = "";
 
         await Task.Delay(WaitingTime);
         result = _registry.GetParameter(guid);
 
-        while (string.IsNullOrEmpty(result))
+        SpinWait.SpinUntil(() =>
         {
-            await Task.Delay(WaitingTime);
             result = _registry.GetParameter(guid);
+            time += WaitingTime;
 
-            if (string.IsNullOrEmpty(result) && time >= DisconnectTime)
+            if (time >= DisconnectTime)
             {
-                //cancellationTokenSource.Cancel();
-                return BadRequest("Data could not be retrieved");
+                return true;
             }
             
-            time += WaitingTime;
-        }
+            return !string.IsNullOrEmpty(result);
+        }, WaitingTime);
 
-        _registry.RemoveParameter(guid);
-        
-        return Ok(result);
+        try
+        {
+            if (string.IsNullOrEmpty(result))
+            {
+                throw new Exception("Data could not be retrieved");
+            }
+            
+            //TODO разобраться как сделать это через middleware
+            Response.Headers.Add("Content-Type", "text/xml");
+            
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        finally
+        {
+            _registry.RemoveParameter(guid);
+        }
     }
 }

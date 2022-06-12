@@ -7,7 +7,7 @@ namespace PmsAgentProxy.Util
     {
         public override void Load()
         {
-            Bind<IProxy>().ToMethod(x => HubProxy.GetInstance());
+            Bind<IProxy>().ToMethod(x => HubProxy.GetInstance(new NpbClient()));
         }
     }
 }

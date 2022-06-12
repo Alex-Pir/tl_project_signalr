@@ -12,12 +12,12 @@ namespace PmsAgentProxy.Controllers
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly IProxy _proxy;
-        private readonly string _guid;
+        private readonly GuidConfigSection _guid;
         
         public HomeController(IProxy proxy)
         {
             _proxy = proxy;
-            _guid = GuidConfigSection.GetGuid();
+            _guid = (GuidConfigSection)new GuidConfigSection().GetData();
         }
         
         [HttpPost]
@@ -25,7 +25,7 @@ namespace PmsAgentProxy.Controllers
         {
             try
             {
-                var response = await _proxy.SendRequest(_guid, parameter);
+                var response = await _proxy.SendRequest(_guid.Value, parameter);
                 return new XmlActionResult(response);
             }
             catch (Exception ex)
