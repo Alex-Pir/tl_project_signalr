@@ -12,7 +12,6 @@ namespace PmsAgentManager.Controllers;
 [ApiController]
 public class ManagerController : ControllerBase
 {
-    private const int WaitingTime = 300;
     private const int DisconnectTime = 120000;
     
     private readonly IHubContext<AgentHub> _hubContext;
@@ -25,7 +24,6 @@ public class ManagerController : ControllerBase
     }
     
     [HttpGet]
-    //[XmlHeader]
     public IActionResult Index()
     {
         return Ok();
@@ -34,50 +32,33 @@ public class ManagerController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> GetHotelInfo(string guid, string parameter)
     {
-        int time = 0;
-        
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(DisconnectTime);
         CancellationToken token = cancellationTokenSource.Token;
         
         await _hubContext.Clients.Group(guid).SendCoreAsync("SendRequest", new object?[] {parameter}, token);
         
-        string? result = "";
-
-        await Task.Delay(WaitingTime);
-        result = _registry.GetParameter(guid);
-
-        SpinWait.SpinUntil(() =>
-        {
-            result = _registry.GetParameter(guid);
-            time += WaitingTime;
-
-            if (time >= DisconnectTime)
-            {
-                return true;
-            }
-            
-            return !string.IsNullOrEmpty(result);
-        }, WaitingTime);
+        string result = string.Empty;
 
         try
         {
-            if (string.IsNullOrEmpty(result))
+
+            while (!cancellationTokenSource.IsCancellationRequested)
             {
-                throw new Exception("Data could not be retrieved");
+                result = _registry.GetParameter(guid);
+                
+                if (!string.IsNullOrEmpty(result))
+                {
+                    Response.Headers.Add("Content-Type", "text/xml");
+            
+                    return Ok(result);
+                }
             }
             
-            //TODO разобраться как сделать это через middleware
-            Response.Headers.Add("Content-Type", "text/xml");
-            
-            return Ok(result);
+            throw new Exception("Data could not be retrieved");
         }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
-        }
-        finally
-        {
-            _registry.RemoveParameter(guid);
         }
     }
 }

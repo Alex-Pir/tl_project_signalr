@@ -38,10 +38,4 @@ app.MapControllers();
 
 app.MapHub<AgentHub>("/signalr");
 
-/*
-app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/manager"), appBuilder =>
-{
-    appBuilder.UseHeader();
-});
-*/
 app.Run();
