@@ -1,0 +1,32 @@
+.connection-title {
+    text-align: center;
+}
+
+.connection-table {
+    font-size: 16px;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+    width: 40%;
+}
+
+.connection-table th:first-child, 
+.connection-table td:first-child {
+    text-align: left;
+}
+.connection-table th, .connection-table td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: #fff;
+}
+
+.connection-table td {
+    background: #D8E6F3;
+}
+
+.connection-table th, 
+.connection-table td:first-child {
+    background: #AFCDE7;
+    color: #fff;
+    padding: 10px 20px;
+}

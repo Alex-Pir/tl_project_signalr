@@ -1,5 +1,6 @@
 using PmsAgentManager.HttpApi;
 using PmsAgentManager.Hubs;
+using PmsAgentManager.Middlewares;
 using PmsAgentManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,8 +15,11 @@ if (url == null || page == null)
 
 builder.Services.AddSingleton<IHttpApi>(new HttpNpbApi(url, page));
 builder.Services.AddSingleton<IRegistry, Registry>();
+builder.Services.AddSingleton<IConnectionMapping, ConnectionMapping>();
 
-builder.Services.AddControllers();
+builder.Services.AddMvc();
+
+builder.Services.AddControllers().AddXmlDataContractSerializerFormatters();
 
 builder.Services.AddSignalR(hubOption =>
 {
@@ -26,7 +30,6 @@ builder.Services.AddSignalR(hubOption =>
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

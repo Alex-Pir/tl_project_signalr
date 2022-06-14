@@ -22,11 +22,16 @@ namespace PmsAgentManager.Services
             }
         }
         
-        public string? GetParameter(string guid)
+        public string GetParameter(string guid)
         {
             StreamData.TryGetValue(guid, out var parameter);
+
+            if (!string.IsNullOrEmpty(parameter))
+            {
+                RemoveParameter(guid);
+            }
             
-            return parameter;
+            return parameter ?? "";
         }
     }
 }

@@ -12,20 +12,18 @@ namespace PmsAgentManager.Controllers;
 [ApiController]
 public class ManagerController : ControllerBase
 {
-    private const int WaitingTime = 300;
     private const int DisconnectTime = 120000;
     
-    private readonly IHubContext<AgentHub, IProxyClient> _hubContext;
+    private readonly IHubContext<AgentHub> _hubContext;
     private readonly IRegistry _registry;
-    
-    public ManagerController(IHubContext<AgentHub, IProxyClient> hubContext, IRegistry registry)
+
+    public ManagerController(IHubContext<AgentHub> hubContext, IRegistry registry)
     {
         _hubContext = hubContext;
         _registry = registry;
     }
     
     [HttpGet]
-    //[XmlHeader]
     public IActionResult Index()
     {
         return Ok();
@@ -34,34 +32,33 @@ public class ManagerController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> GetHotelInfo(string guid, string parameter)
     {
-        int time = 0;
-        
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(DisconnectTime);
         CancellationToken token = cancellationTokenSource.Token;
         
-        await _hubContext.Clients.Group(guid).SendRequest(parameter);
+        await _hubContext.Clients.Group(guid).SendCoreAsync("SendRequest", new object?[] {parameter}, token);
         
-        string? result = "";
+        string result = string.Empty;
 
-        await Task.Delay(WaitingTime);
-        result = _registry.GetParameter(guid);
-
-        while (string.IsNullOrEmpty(result))
+        try
         {
-            await Task.Delay(WaitingTime);
-            result = _registry.GetParameter(guid);
 
-            if (string.IsNullOrEmpty(result) && time >= DisconnectTime)
+            while (!cancellationTokenSource.IsCancellationRequested)
             {
-                //cancellationTokenSource.Cancel();
-                return BadRequest("Data could not be retrieved");
+                result = _registry.GetParameter(guid);
+                
+                if (!string.IsNullOrEmpty(result))
+                {
+                    Response.Headers.Add("Content-Type", "text/xml");
+            
+                    return Ok(result);
+                }
             }
             
-            time += WaitingTime;
+            throw new Exception("Data could not be retrieved");
         }
-
-        _registry.RemoveParameter(guid);
-        
-        return Ok(result);
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

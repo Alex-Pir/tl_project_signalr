@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using PmsAgentProxy.Exceptions;
+using PmsAgentProxy.Services.Client;
 using PmsAgentProxy.Services.GuidServices;
 using PmsAgentProxy.Services.RemoteServices;
 
@@ -21,20 +22,22 @@ namespace PmsAgentProxy.Clients
 		private const string ServerRequestMethod = "SendRequest";
 		private const string ResponseForServerMethod = "SetResponse";
 
+        private readonly IPmsAgentClient _client;
         private readonly HubConnection _hubConnection;
 
         private string _response;
 
-        private readonly string _guid;
+        private readonly GuidConfigSection _guid;
 
         private static HubProxy _instance;
         private static object syncRoot = new();
-        
-        private HubProxy()
+
+        private HubProxy(IPmsAgentClient client)
         {
-            ServiceConfigSection service = RemoteServicesConfigGroup.GetServiceConfig();
+            _client = client;
+            _guid = (GuidConfigSection)new GuidConfigSection().GetData();
             
-            _guid = GuidConfigSection.GetGuid();
+            ServiceConfigSection service = (ServiceConfigSection)new ServiceConfigSection().GetData();
             
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(service.Url)
@@ -49,7 +52,7 @@ namespace PmsAgentProxy.Clients
             };
         }
 
-        public static HubProxy GetInstance()
+        public static HubProxy GetInstance(IPmsAgentClient client)
         {
             if (_instance != null) 
             {
@@ -58,7 +61,7 @@ namespace PmsAgentProxy.Clients
             
             lock (syncRoot)
             {
-                _instance ??= new HubProxy();
+                _instance ??= new HubProxy(client);
             }
 
             return _instance;
@@ -68,7 +71,7 @@ namespace PmsAgentProxy.Clients
         {
             RegisterResponseHandler();
             await _hubConnection.StartAsync();
-            await RegisterToServer(_guid);
+            await RegisterToServer(_guid.Value);
         }
         
 		private async Task RegisterToServer(string guid)
@@ -89,6 +92,7 @@ namespace PmsAgentProxy.Clients
                 await _hubConnection.InvokeAsync(MethodRequest, guid, data);
 
                 int waitingTime = 0;
+                
                 while (string.IsNullOrEmpty(_response) && waitingTime < ResponseWaitingEndTime)
                 {
                     await Task.Delay(ReconnectTimeout);
@@ -110,7 +114,10 @@ namespace PmsAgentProxy.Clients
 
             _hubConnection.On<string>(ServerRequestMethod, request =>
             {
-                _hubConnection.InvokeAsync(ResponseForServerMethod, _guid, "response-test-parameter");
+                ClientConfigSection config = (ClientConfigSection)new ClientConfigSection().GetData();
+                
+                string result = _client.Call("", request, config.Page);
+                _hubConnection.InvokeAsync(ResponseForServerMethod, _guid.Value, result);
             });
         }
     }
