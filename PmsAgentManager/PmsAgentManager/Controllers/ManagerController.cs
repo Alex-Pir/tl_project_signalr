@@ -16,11 +16,17 @@ public class ManagerController : ControllerBase
     
     private readonly IHubContext<AgentHub> _hubContext;
     private readonly IRegistry _registry;
+    private readonly IConnectionMapping _connectionMapping;
 
-    public ManagerController(IHubContext<AgentHub> hubContext, IRegistry registry)
+    public ManagerController(
+        IHubContext<AgentHub> hubContext, 
+        IRegistry registry,
+        IConnectionMapping connectionMapping
+     )
     {
         _hubContext = hubContext;
         _registry = registry;
+        _connectionMapping = connectionMapping;
     }
     
     [HttpGet]
@@ -34,18 +40,23 @@ public class ManagerController : ControllerBase
     {
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(DisconnectTime);
         CancellationToken token = cancellationTokenSource.Token;
-        
-        await _hubContext.Clients.Group(guid).SendCoreAsync("SendRequest", new object?[] {parameter}, token);
-        
-        string result = string.Empty;
 
+        string connection = _connectionMapping.GetConnectionKeyByValue(guid);
+        
         try
         {
 
+            if (string.IsNullOrEmpty(connection))
+            {
+                throw new Exception("The client is not connected");
+            }
+        
+            await _hubContext.Clients.Group(guid).SendCoreAsync("SendRequest", new object?[] {parameter}, token);
+            
             while (!cancellationTokenSource.IsCancellationRequested)
             {
-                result = _registry.GetParameter(guid);
-                
+                string result = _registry.GetParameter(guid);
+
                 if (!string.IsNullOrEmpty(result))
                 {
                     Response.Headers.Add("Content-Type", "text/xml");

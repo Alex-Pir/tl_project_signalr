@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using PmsAgentProxy.Exceptions;
 using PmsAgentProxy.Services.Client;
 using PmsAgentProxy.Services.GuidServices;
-using PmsAgentProxy.Services.RemoteServices;
+using PmsAgentProxy.Settings;
 
 namespace PmsAgentProxy.Clients
 {
@@ -37,10 +36,10 @@ namespace PmsAgentProxy.Clients
             _client = client;
             _guid = (GuidConfigSection)new GuidConfigSection().GetData();
             
-            ServiceConfigSection service = (ServiceConfigSection)new ServiceConfigSection().GetData();
+            ClientSettings serverSettings = new ClientSettings();
             
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl(service.Url)
+                .WithUrl(serverSettings.Url)
                 .Build();
             
             _hubConnection.ServerTimeout = TimeSpan.FromMinutes(DisconnectTimeoutMinutes);

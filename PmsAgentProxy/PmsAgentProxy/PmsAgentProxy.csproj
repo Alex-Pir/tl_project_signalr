@@ -43,6 +43,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+          <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.AspNet.SignalR.Client">
           <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
         </Reference>
@@ -289,7 +292,9 @@
         <Compile Include="Services\Client\ClientConfigSection.cs" />
         <Compile Include="Services\ConfigSection.cs" />
         <Compile Include="Services\GuidServices\GuidConfigSection.cs" />
-        <Compile Include="Services\RemoteServices\ServiceConfigSection.cs" />
+        <Compile Include="Services\Settings\SettingsConfigSection.cs" />
+        <Compile Include="Settings\ClientSettings.cs" />
+        <Compile Include="Settings\ClientSettingsManager.cs" />
         <Compile Include="Startup.cs" />
         <Compile Include="Util\ErrorActionResult.cs" />
         <Compile Include="Util\NinjectRegistrations.cs" />
@@ -298,6 +303,7 @@
     <ItemGroup>
         <Content Include="favicon.ico" />
         <Content Include="Global.asax" />
+        <Content Include="settings.ini" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>
@@ -308,7 +314,6 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="App_Data" />
-        <Folder Include="Models" />
     </ItemGroup>
     <ItemGroup>
         <None Include="packages.config" />
