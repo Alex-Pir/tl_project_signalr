@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\AgentProxy",
+    "\\AgentProxy\\AgentProxy",
     "\\PmsAgentManager",
     "\\PmsAgentManager\\PmsAgentManager",
     "\\PmsAgentManager\\PmsAgentManager\\Views",
@@ -9,6 +11,6 @@
     "\\PmsAgentProxy\\PmsAgentProxy",
     "\\PmsAgentProxy\\PmsAgentProxy\\Settings"
   ],
-  "SelectedNode": "\\PmsAgentProxy\\PmsAgentProxy\\Settings\\ManagerSettings.cs",
+  "SelectedNode": "\\AgentProxy\\AgentProxy\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
