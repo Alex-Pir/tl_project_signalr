@@ -13,7 +13,7 @@ namespace AgentProxy
 
             ServiceToRun = new ServiceBase[]
             {
-                new ProxyService()
+                new ProxyServices()
             };
             
             ServiceBase.Run(ServiceToRun);

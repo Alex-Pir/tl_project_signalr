@@ -11,6 +11,6 @@
     "\\PmsAgentProxy\\PmsAgentProxy",
     "\\PmsAgentProxy\\PmsAgentProxy\\Settings"
   ],
-  "SelectedNode": "\\AgentProxy\\AgentProxy\\Program.cs",
+  "SelectedNode": "\\PmsAgentProxy\\PmsAgentProxy\\Settings\\ManagerSettings.cs",
   "PreviewInSolutionExplorer": false
 }

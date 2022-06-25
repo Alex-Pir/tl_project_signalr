@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using PmsAgentManager.Exceptions;
+using System.Collections.Concurrent;
 
 namespace PmsAgentManager.Services
 {
@@ -10,7 +11,7 @@ namespace PmsAgentManager.Services
         {
             if (!StreamData.TryAdd(guid, parameter))
             {
-                throw new Exception("Can not add data to Registry");
+                throw new RegistryException("Can not add data to Registry");
             }
         }
 
@@ -18,7 +19,7 @@ namespace PmsAgentManager.Services
         {
             if (!StreamData.TryRemove(guid, out var result))
             {
-                throw new Exception("Can not remove data from Registry");
+                throw new RegistryException("Can not remove data from Registry");
             }
         }
         
@@ -31,7 +32,7 @@ namespace PmsAgentManager.Services
                 RemoveParameter(guid);
             }
             
-            return parameter ?? "";
+            return parameter ?? string.Empty;
         }
     }
 }

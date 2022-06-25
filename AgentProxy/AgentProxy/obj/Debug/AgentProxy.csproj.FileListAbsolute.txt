@@ -238,3 +238,11 @@ C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\N
 C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\System.Diagnostics.EventLog.xml
 C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\System.Diagnostics.PerformanceCounter.xml
 C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\obj\Debug\AgentProxy.exe.config
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\Microsoft.Win32.SystemEvents.dll
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\System.ServiceProcess.ServiceController.dll
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\Microsoft.Win32.SystemEvents.xml
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Debug\System.ServiceProcess.ServiceController.xml
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\obj\Debug\AgentProxy.Services.ProxyServices.resources
+C:\Users\AlexP\source\repos\tl_project_signalr\AgentProxy\AgentProxy\obj\Debug\AgentProxy.csproj.GenerateResource.cache

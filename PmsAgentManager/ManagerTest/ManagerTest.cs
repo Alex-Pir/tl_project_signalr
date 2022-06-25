@@ -26,4 +26,27 @@ public class ManagerTest
         // Assert
         Assert.IsType<BadRequestObjectResult>(result);
     }
+
+    [Fact]
+    public async Task ManagerController_GetHotelInfo_ResultString_Success()
+    {
+        // Arrange
+        var clientsObject = new Mock<IHubClients>();
+        var hubMock = new Mock<IHubContext<AgentHub>>();
+        hubMock.Setup(x => x.Clients).Returns(clientsObject.Object);
+
+        var registryMock = new Mock<IRegistry>();
+        registryMock.Setup(x => x.GetParameter("test-guid")).Returns("test-response");
+
+        var connectionsMock = new Mock<IConnectionMapping>();
+        connectionsMock.Setup(x => x.GetConnectionKeyByValue("test-guid")).Returns(new string("test-connection"));
+
+        var managerController = new ManagerController(hubMock.Object, registryMock.Object, connectionsMock.Object);
+
+        // Act
+        var result = await managerController.GetHotelInfo("test-guid", "test-param");
+
+        // Assert
+        Assert.Equal("test-response", result.ToString());
+    }
 }

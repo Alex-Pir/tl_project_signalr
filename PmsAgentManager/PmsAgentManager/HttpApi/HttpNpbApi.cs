@@ -1,4 +1,6 @@
-﻿namespace PmsAgentManager.HttpApi
+﻿using PmsAgentManager.Exceptions;
+
+namespace PmsAgentManager.HttpApi
 {
     public class HttpNpbApi : IHttpApi
     {
@@ -19,7 +21,6 @@
         
         public string GetData()
         {
-            string result = "";
             using var client = new HttpClient();
             client.BaseAddress = new Uri(_url);
             client.DefaultRequestHeaders.Accept.Clear();
@@ -29,14 +30,10 @@
                 
             if (response.IsSuccessStatusCode)
             {
-                result = response.Content.ReadAsStringAsync().Result;
-            }
-            else
-            {
-                Console.WriteLine("Internal server Error");
+                return response.Content.ReadAsStringAsync().Result;
             }
 
-            return result;
+            throw new ServiceException("Internal server Error");
         }
     }
 }
