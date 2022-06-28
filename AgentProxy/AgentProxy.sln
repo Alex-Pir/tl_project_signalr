@@ -5,20 +5,19 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentProxy", "AgentProxy\AgentProxy.csproj", "{4318FC78-7386-4171-8E8B-5054CF732FE3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PMS Agent Proxy Setup", "PMS Agent Proxy Setup\PMS Agent Proxy Setup.vdproj", "{5B9F0B08-CD5E-4510-ABFC-E880746D2EEC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4318FC78-7386-4171-8E8B-5054CF732FE3}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{4318FC78-7386-4171-8E8B-5054CF732FE3}.All|Any CPU.Build.0 = Release|Any CPU
 		{4318FC78-7386-4171-8E8B-5054CF732FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4318FC78-7386-4171-8E8B-5054CF732FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4318FC78-7386-4171-8E8B-5054CF732FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4318FC78-7386-4171-8E8B-5054CF732FE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B9F0B08-CD5E-4510-ABFC-E880746D2EEC}.Debug|Any CPU.ActiveCfg = Debug
-		{5B9F0B08-CD5E-4510-ABFC-E880746D2EEC}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

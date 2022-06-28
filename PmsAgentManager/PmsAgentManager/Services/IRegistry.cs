@@ -2,7 +2,7 @@
 
 public interface IRegistry
 {
-    public void SetParameter(string guid, string parameter);
-    public void RemoveParameter(string guid);
-    public string GetParameter(string guid);
+    public void SetParameter(int guid, string parameter);
+    public void RemoveParameter(int guid);
+    public string GetParameter(int guid);
 }

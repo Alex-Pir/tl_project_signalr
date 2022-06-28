@@ -5,9 +5,9 @@ namespace PmsAgentManager.Services
 {
     public class Registry : IRegistry
     {
-        private static readonly ConcurrentDictionary<string, string> StreamData = new();
+        private static readonly ConcurrentDictionary<int, string> StreamData = new();
 
-        public void SetParameter(string guid, string parameter)
+        public void SetParameter(int guid, string parameter)
         {
             if (!StreamData.TryAdd(guid, parameter))
             {
@@ -15,7 +15,7 @@ namespace PmsAgentManager.Services
             }
         }
 
-        public void RemoveParameter(string guid)
+        public void RemoveParameter(int guid)
         {
             if (!StreamData.TryRemove(guid, out var result))
             {
@@ -23,7 +23,7 @@ namespace PmsAgentManager.Services
             }
         }
         
-        public string GetParameter(string guid)
+        public string GetParameter(int guid)
         {
             StreamData.TryGetValue(guid, out var parameter);
 

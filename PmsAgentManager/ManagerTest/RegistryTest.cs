@@ -9,11 +9,12 @@ namespace ManagerTest
         public void Registry_SetParameter_SetDataByClientGuid_Success()
         {
             //Arrange
+            int hotelGuid = 10;
             IRegistry registry = new Registry();
-            registry.SetParameter("test_guid", "test_parameter");
+            registry.SetParameter(hotelGuid, "test_parameter");
 
             //Act
-            var result = registry.GetParameter("test_guid");
+            var result = registry.GetParameter(hotelGuid);
 
             //Assert
             Assert.Equal("test_parameter", result);
@@ -23,10 +24,11 @@ namespace ManagerTest
         public void Registry_GetParameter_GetDataOfEmptyElement_EmptyString()
         {
             //Arrange
+            int hotelGuid = 10;
             IRegistry registry = new Registry();
 
             //Act
-            var result = registry.GetParameter("test_guid");
+            var result = registry.GetParameter(hotelGuid);
 
             //Assert
             Assert.Equal(string.Empty, result);
@@ -36,12 +38,13 @@ namespace ManagerTest
         public void Registry_RemoveParameter_RemoveParameterSuccess_EmptyString()
         {
             //Arrange
+            int hotelGuid = 10;
             IRegistry registry = new Registry();
-            registry.SetParameter("test_guid", "test_parameter");
+            registry.SetParameter(hotelGuid, "test_parameter");
 
             //Act
-            registry.RemoveParameter("test_guid");
-            var result = registry.GetParameter("test-guid");
+            registry.RemoveParameter(hotelGuid);
+            var result = registry.GetParameter(hotelGuid);
 
             //Assert
             Assert.Equal(string.Empty, result);

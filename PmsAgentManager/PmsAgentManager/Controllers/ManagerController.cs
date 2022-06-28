@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using PmsAgentManagement.Hubs;
 using PmsAgentManager.Attributes;
+using PmsAgentManager.Dto;
 using PmsAgentManager.HttpApi;
 using PmsAgentManager.Hubs;
 using PmsAgentManager.Services;
@@ -36,12 +37,12 @@ public class ManagerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> GetHotelInfo(string guid, string parameter)
+    public async Task<IActionResult> GetHotelInfo([FromBody] ManagerDto managerDto)
     {
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(DisconnectTime);
         CancellationToken token = cancellationTokenSource.Token;
 
-        string connection = _connectionMapping.GetConnectionKeyByValue(guid);
+        string connection = _connectionMapping.GetConnectionKeyByValue(managerDto.Guid);
         
         try
         {
@@ -51,11 +52,11 @@ public class ManagerController : ControllerBase
                 throw new Exception("The client is not connected");
             }
         
-            await _hubContext.Clients.Group(guid).SendCoreAsync("SendRequest", new object?[] {parameter}, token);
+            await _hubContext.Clients.Group(managerDto.Guid.ToString()).SendCoreAsync("SendRequest", new object?[] {managerDto.Parameter}, token);
             
             while (!cancellationTokenSource.IsCancellationRequested)
             {
-                string result = _registry.GetParameter(guid);
+                string result = _registry.GetParameter(managerDto.Guid);
 
                 if (!string.IsNullOrEmpty(result))
                 {

@@ -2,9 +2,9 @@
 
 public interface IConnectionMapping
 {
-    public void Add(string connectionId, string guid);
-    public string GetConnection(string key);
-    public string GetConnectionKeyByValue(string value);
-    public Dictionary<string, string> GetAllConnections();
+    public void Add(string connectionId, int guid);
+    public int? GetConnection(string key);
+    public string GetConnectionKeyByValue(int value);
+    public Dictionary<string, int> GetAllConnections();
     public void Remove(string connectionId);
 }
