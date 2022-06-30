@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Moq;
 using PmsAgentManager.Controllers;
+using PmsAgentManager.Dto;
 using PmsAgentManager.Hubs;
 using PmsAgentManager.Services;
 using Xunit;
@@ -21,9 +22,45 @@ public class ManagerTest
         var managerController = new ManagerController(hubMock.Object, registryMock.Object, connectionsMock.Object);
         
         // Act
-        var result = await managerController.GetHotelInfo("test-guid", "test-param");
+        var result = await managerController.GetHotelInfo(
+            new ManagerDto() 
+            {
+                Guid = 1,
+                Parameter = "test-param"
+            }
+       );
         
         // Assert
         Assert.IsType<BadRequestObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task ManagerController_GetHotelInfo_ResultString_Success()
+    {
+        // Arrange
+        int hotelGuid = 10;
+        var clientsObject = new Mock<IHubClients>();
+        var hubMock = new Mock<IHubContext<AgentHub>>();
+        hubMock.Setup(x => x.Clients).Returns(clientsObject.Object);
+
+        var registryMock = new Mock<IRegistry>();
+        registryMock.Setup(x => x.GetParameter(hotelGuid)).Returns("test-response");
+
+        var connectionsMock = new Mock<IConnectionMapping>();
+        connectionsMock.Setup(x => x.GetConnectionKeyByValue(hotelGuid)).Returns(new string("test-connection"));
+
+        var managerController = new ManagerController(hubMock.Object, registryMock.Object, connectionsMock.Object);
+
+        // Act
+        var result = await managerController.GetHotelInfo(
+            new ManagerDto()
+            {
+                Guid = hotelGuid,
+                Parameter = "test-param"
+            }
+        );
+
+        // Assert
+        Assert.Equal("test-response", result.ToString());
     }
 }

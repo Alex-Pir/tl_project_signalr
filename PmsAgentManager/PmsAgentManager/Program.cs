@@ -1,6 +1,5 @@
 using PmsAgentManager.HttpApi;
 using PmsAgentManager.Hubs;
-using PmsAgentManager.Middlewares;
 using PmsAgentManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);

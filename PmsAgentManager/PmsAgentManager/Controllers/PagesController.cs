@@ -3,7 +3,7 @@ using PmsAgentManager.Services;
 
 namespace PmsAgentManager.Controllers;
 
-[Route("/[controller]")]
+[Route("/")]
 public class PagesController : Controller
 {
     private readonly IConnectionMapping _connections;

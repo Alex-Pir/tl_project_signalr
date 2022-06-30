@@ -4,10 +4,10 @@ using AgentProxy.Clients;
 
 namespace AgentProxy.Services;
 
-public class ProxyService : ServiceBase
+public class ProxyServices : ServiceBase
 {
 
-    public ProxyService()
+    public ProxyServices()
     {
         InitializeComponent();
         AutoLog = true;
@@ -23,6 +23,10 @@ public class ProxyService : ServiceBase
 
     private void InitializeComponent()
     {
-        ServiceName = "PMS Agent Proxy";
+            // 
+            // ProxyServices
+            // 
+            this.ServiceName = "PMS Agent Proxy";
+
     }
 }

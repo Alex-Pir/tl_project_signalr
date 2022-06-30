@@ -25,7 +25,7 @@ namespace AgentProxy.Clients
 
         private string _response;
 
-        private readonly string _guid;
+        private readonly int _guid;
 
         private static HubProxy _instance;
         private static object syncRoot = new();
@@ -33,7 +33,12 @@ namespace AgentProxy.Clients
         private HubProxy(IPmsAgentClient client)
         {
             _client = client;
-            _guid = new GuidConfigSection().Value;
+            _guid =  Convert.ToInt32(new GuidConfigSection().Value);
+
+            if (_guid <= 0)
+            {
+                throw new ArgumentException("Guid can not be negative");
+            }
 
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(new ManagerSettings().Url)
@@ -41,6 +46,12 @@ namespace AgentProxy.Clients
             
             _hubConnection.ServerTimeout = TimeSpan.FromMinutes(DisconnectTimeoutMinutes);
             
+            _hubConnection.Reconnected += async (error) =>
+            {
+                await Task.Delay(ReconnectTimeout);
+                StartHub();
+            };
+
             _hubConnection.Closed += async (error) =>
             {
                 await Task.Delay(ReconnectTimeout);
@@ -70,7 +81,7 @@ namespace AgentProxy.Clients
             RegisterToServer(_guid).Wait();
         }
         
-		private async Task RegisterToServer(string guid)
+		private async Task RegisterToServer(int guid)
         {
             var registerResult = await _hubConnection.InvokeAsync<bool>(MethodRegister, guid);
 
@@ -80,7 +91,7 @@ namespace AgentProxy.Clients
             }
         }
 
-        public async Task<string> SendRequest(string guid, string data)
+        public async Task<string> SendRequest(int guid, string data)
         {
             try
             {

@@ -1,28 +1,29 @@
-﻿using System.Collections.Concurrent;
+﻿using PmsAgentManager.Exceptions;
+using System.Collections.Concurrent;
 
 namespace PmsAgentManager.Services
 {
     public class Registry : IRegistry
     {
-        private static readonly ConcurrentDictionary<string, string> StreamData = new();
+        private static readonly ConcurrentDictionary<int, string> StreamData = new();
 
-        public void SetParameter(string guid, string parameter)
+        public void SetParameter(int guid, string parameter)
         {
             if (!StreamData.TryAdd(guid, parameter))
             {
-                throw new Exception("Can not add data to Registry");
+                throw new RegistryException("Can not add data to Registry");
             }
         }
 
-        public void RemoveParameter(string guid)
+        public void RemoveParameter(int guid)
         {
             if (!StreamData.TryRemove(guid, out var result))
             {
-                throw new Exception("Can not remove data from Registry");
+                throw new RegistryException("Can not remove data from Registry");
             }
         }
         
-        public string GetParameter(string guid)
+        public string GetParameter(int guid)
         {
             StreamData.TryGetValue(guid, out var parameter);
 
@@ -31,7 +32,7 @@ namespace PmsAgentManager.Services
                 RemoveParameter(guid);
             }
             
-            return parameter ?? "";
+            return parameter ?? string.Empty;
         }
     }
 }

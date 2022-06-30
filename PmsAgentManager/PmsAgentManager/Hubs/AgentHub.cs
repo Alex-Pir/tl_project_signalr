@@ -26,11 +26,11 @@ namespace PmsAgentManager.Hubs
             Clients.Group(guid).AddMessage(response);
         }
 
-        public bool Register(string guid)
+        public bool Register(int guid)
         {
             try
             {
-                Groups.AddToGroupAsync(Context.ConnectionId, guid);
+                Groups.AddToGroupAsync(Context.ConnectionId, guid.ToString());
                 _connections.Add(Context.ConnectionId, guid);
                 return true;
             }
@@ -45,7 +45,7 @@ namespace PmsAgentManager.Hubs
             Clients.Group(id.ToString()).AddMessage(message);
         }
 
-        public void SetResponse(string guid, string message)
+        public void SetResponse(int guid, string message)
         {
             _registry.SetParameter(guid, message);
         }

@@ -9,21 +9,14 @@ namespace AgentProxy
     {
         public static void Main(string[] args)
         {
-            /*ServiceBase[] ServiceToRun;
+            ServiceBase[] ServiceToRun;
 
             ServiceToRun = new ServiceBase[]
             {
-                new ProxyService()
+                new ProxyServices()
             };
             
-            ServiceBase.Run(ServiceToRun);*/
-            
-            HubProxy.GetInstance(new NpbClient()).StartHub();
-
-            while (true)
-            {
-                
-            }
+            ServiceBase.Run(ServiceToRun);
         }
     }
 }

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\AgentProxy",
+    "\\AgentProxy\\AgentProxy",
+    "\\PmsAgentManager",
+    "\\PmsAgentManager\\PmsAgentManager",
+    "\\PmsAgentManager\\PmsAgentManager\\Views",
+    "\\PmsAgentManager\\PmsAgentManager\\Views\\Pages",
+    "\\PmsAgentProxy",
+    "\\PmsAgentProxy\\PmsAgentProxy",
+    "\\PmsAgentProxy\\PmsAgentProxy\\Settings"
+  ],
+  "SelectedNode": "\\PmsAgentProxy\\PmsAgentProxy\\Settings\\ManagerSettings.cs",
+  "PreviewInSolutionExplorer": false
+}
