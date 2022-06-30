@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="19.6" version="19.6" Modules="professional" RootPath="." Language="ru" Id="{B23A1D11-420D-462B-8155-CE22F0A940D1}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;ActSyncAppComponent;CPLAppletComponent;FixupComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_CURRENT_YEAR" Value="2022" ValueLocId="-"/>
+    <ROW Property="AI_FINDEXE_TITLE" Value="Выберите установочный пакет для [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="AI_PACKAGING_TOOL" Value="Advanced Installer 19.6 build bf52c98e" ValueLocId="-"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="Эта база данных установщика содержит логику и данные, необходимые для установки [|[ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="Manufacturer" Value="TravelLine"/>
+    <ROW Property="ProductCode" Value="1049:{6AA346A5-B161-4027-9F50-2143745087EF} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="Agent Proxy"/>
+    <ROW Property="ProductVersion" Value="1.0.0"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="UpgradeCode" Value="{C359557A-64E6-463F-A605-9034F5DB8130}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_ExePath" ComponentId="{448104DC-F233-4214-A9C7-6F89A4CBA77A}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="APPDIR" ComponentId="{5782AD21-3225-4CF7-9870-9FB8D8D3BB7A}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="AgentProxy.exe" ComponentId="{D4F77291-DECE-4CD1-B6A7-A2DE0C053307}" Directory_="APPDIR" Attributes="0" KeyPath="AgentProxy.exe"/>
+    <ROW Component="INIFileParser.dll" ComponentId="{376AB178-5192-4138-83DE-603A2D469091}" Directory_="APPDIR" Attributes="0" KeyPath="INIFileParser.dll"/>
+    <ROW Component="Microsoft.AspNetCore.Connections.Abstractions.dll" ComponentId="{9BD7BE17-A7E9-4104-B4DE-FE7BCF9AADBA}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.Connections.Abstractions.dll"/>
+    <ROW Component="Microsoft.AspNetCore.Http.Connections.Client.dll" ComponentId="{B926E43D-54D0-431C-B4E1-B7479651CF83}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.Http.Connections.Client.dll"/>
+    <ROW Component="Microsoft.AspNetCore.Http.Connections.Common.dll" ComponentId="{C67994D9-0CD8-4623-BE0C-F9315BCAAB8F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.Http.Connections.Common.dll"/>
+    <ROW Component="Microsoft.AspNetCore.SignalR.Client.Core.dll" ComponentId="{972B4F7D-0F1C-4D33-86D6-002B2EB9EA06}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.SignalR.Client.Core.dll"/>
+    <ROW Component="Microsoft.AspNetCore.SignalR.Client.dll" ComponentId="{72A59764-CC3D-4D4F-A5CF-56BD8E944105}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.SignalR.Client.dll"/>
+    <ROW Component="Microsoft.AspNetCore.SignalR.Common.dll" ComponentId="{BFC905B0-AEB2-4DFF-BDE0-42C8033EE514}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.SignalR.Common.dll"/>
+    <ROW Component="Microsoft.AspNetCore.SignalR.Protocols.Json.dll" ComponentId="{CAEACF65-3ED2-4D20-A24D-75313A1F02C4}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.AspNetCore.SignalR.Protocols.Json.dll"/>
+    <ROW Component="Microsoft.Bcl.AsyncInterfaces.dll" ComponentId="{3C6A4BBF-6003-41F2-B9E3-141E5BB423EF}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.Abstractions.dll" ComponentId="{5E7936D0-D159-4BD8-B42D-341C468FF0A4}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.dll" ComponentId="{A9CDFC87-CC24-456A-A10B-ADE5D75472D3}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.dll"/>
+    <ROW Component="Microsoft.Extensions.Features.dll" ComponentId="{F03AAE5D-8C52-4F05-B568-A73BA1092A5F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Features.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{3583B63F-F79D-4A5A-9B61-0BF718E35ECB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.dll" ComponentId="{D244AAB5-93FC-4683-82BA-92E4ABAC1CCD}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Logging.dll"/>
+    <ROW Component="Microsoft.Extensions.Options.dll" ComponentId="{5EACC46F-3C84-428C-8186-65BEE03D140A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Options.dll"/>
+    <ROW Component="Microsoft.Extensions.Primitives.dll" ComponentId="{50A102F1-8AD5-49D9-BA77-D2B9EDB5303D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Extensions.Primitives.dll"/>
+    <ROW Component="Microsoft.Win32.Registry.dll" ComponentId="{3FCFC5F1-AA46-4BEC-83BD-7A0F4B8B6743}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Win32.Registry.dll"/>
+    <ROW Component="Microsoft.Win32.SystemEvents.dll" ComponentId="{7E519BC9-4453-4EF6-9778-2831C61AB14B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{F61EA922-5CE7-45CD-9645-42459B019B32}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Ninject.dll" ComponentId="{F3DC3D06-51CA-4549-BE57-0629F915C774}" Directory_="APPDIR" Attributes="0" KeyPath="Ninject.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{7E5DC7D2-7463-4028-AB67-236446A6D31E}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="System.Buffers.dll" ComponentId="{46162276-1394-4402-928E-7742B69E2BDB}" Directory_="APPDIR" Attributes="0" KeyPath="System.Buffers.dll"/>
+    <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{F3CDB746-DFCF-4C89-9F18-8621DD164856}" Directory_="APPDIR" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
+    <ROW Component="System.Data.Common.dll" ComponentId="{FEC06740-77EF-4A90-8FF6-AD3BA1577E9A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Data.Common.dll"/>
+    <ROW Component="System.Diagnostics.DiagnosticSource.dll" ComponentId="{7B0D9485-30BE-4243-BF5F-5E12865B0178}" Directory_="APPDIR" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll"/>
+    <ROW Component="System.Diagnostics.EventLog.dll" ComponentId="{724D0205-EFA8-44DE-86D5-EE5BEC41DC82}" Directory_="APPDIR" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll"/>
+    <ROW Component="System.Diagnostics.PerformanceCounter.dll" ComponentId="{CDC03D2D-A430-440D-8C53-799346F5F903}" Directory_="APPDIR" Attributes="0" KeyPath="System.Diagnostics.PerformanceCounter.dll"/>
+    <ROW Component="System.Diagnostics.StackTrace.dll" ComponentId="{FCA022ED-70CB-491F-98AB-F723121221BE}" Directory_="APPDIR" Attributes="0" KeyPath="System.Diagnostics.StackTrace.dll"/>
+    <ROW Component="System.Diagnostics.Tracing.dll" ComponentId="{F2BA08ED-C76A-4636-AFF7-549B2FD0A3A0}" Directory_="APPDIR" Attributes="0" KeyPath="System.Diagnostics.Tracing.dll"/>
+    <ROW Component="System.Globalization.Extensions.dll" ComponentId="{3AF64253-53C4-409D-81A5-67BEFC31A524}" Directory_="APPDIR" Attributes="0" KeyPath="System.Globalization.Extensions.dll"/>
+    <ROW Component="System.IO.Compression.dll" ComponentId="{01B26D52-42B9-4BA6-BA2A-951444F4132E}" Directory_="APPDIR" Attributes="0" KeyPath="System.IO.Compression.dll"/>
+    <ROW Component="System.IO.Pipelines.dll" ComponentId="{254686A1-00B8-4436-80CA-A1F67573F142}" Directory_="APPDIR" Attributes="0" KeyPath="System.IO.Pipelines.dll"/>
+    <ROW Component="System.Memory.dll" ComponentId="{774E4D1D-A6FD-4337-8542-70A9E4D6F5C8}" Directory_="APPDIR" Attributes="0" KeyPath="System.Memory.dll"/>
+    <ROW Component="System.Net.Http.dll" ComponentId="{C159ECA8-59CC-4BFB-9A14-1D1D01198662}" Directory_="APPDIR" Attributes="0" KeyPath="System.Net.Http.dll"/>
+    <ROW Component="System.Net.Sockets.dll" ComponentId="{2A7A41F4-75C6-4144-9E6E-9FE39C71BAE3}" Directory_="APPDIR" Attributes="0" KeyPath="System.Net.Sockets.dll"/>
+    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{41187C91-A7D7-4112-A03E-2B9E7CCB8439}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{D8A586A2-49D0-4598-8748-BC6FE993E2C4}" Directory_="APPDIR" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.Runtime.Serialization.Primitives.dll" ComponentId="{411229EE-30D6-4525-B390-870092CC1D3A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Runtime.Serialization.Primitives.dll"/>
+    <ROW Component="System.Security.AccessControl.dll" ComponentId="{6005E370-CE46-45A4-A01F-5F59395107EF}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
+    <ROW Component="System.Security.Cryptography.Algorithms.dll" ComponentId="{2E8F62E3-FDD7-48F7-9363-285789426D2A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Cryptography.Algorithms.dll"/>
+    <ROW Component="System.Security.Permissions.dll" ComponentId="{C45F3AEF-146E-440E-BA01-512DE25BFEF9}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
+    <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{7A6F845E-3CCC-4369-AC04-40813F70DE58}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
+    <ROW Component="System.Security.SecureString.dll" ComponentId="{BFD5B897-7060-4A3A-8B72-409754FFC8A2}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.SecureString.dll"/>
+    <ROW Component="System.ServiceProcess.ServiceController.dll" ComponentId="{3D7B4F31-F7AC-4587-992F-6092EBFACE0F}" Directory_="APPDIR" Attributes="0" KeyPath="System.ServiceProcess.ServiceController.dll"/>
+    <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{217FCDCF-8998-4B01-A47B-A70F99B35A95}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Encodings.Web.dll"/>
+    <ROW Component="System.Text.Json.dll" ComponentId="{AF1E1644-CFD1-489D-A506-44F878184A3A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Text.Json.dll"/>
+    <ROW Component="System.Threading.Channels.dll" ComponentId="{354634D1-FD39-4CDC-AA6B-10B91861BE2F}" Directory_="APPDIR" Attributes="0" KeyPath="System.Threading.Channels.dll"/>
+    <ROW Component="System.Threading.Overlapped.dll" ComponentId="{26293A77-E20C-4A8B-BBF2-54F16CCB737D}" Directory_="APPDIR" Attributes="0" KeyPath="System.Threading.Overlapped.dll"/>
+    <ROW Component="System.Threading.Tasks.Extensions.dll" ComponentId="{10065DE7-855C-4E08-8EA4-F72787FC1BB5}" Directory_="APPDIR" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Component="System.ValueTuple.dll" ComponentId="{7FB0A6A3-9A4C-470F-AC70-00BF9A4C65EA}" Directory_="APPDIR" Attributes="0" KeyPath="System.ValueTuple.dll"/>
+    <ROW Component="System.Xml.XPath.XDocument.dll" ComponentId="{CE344D19-48A7-4603-884F-CD8575F6A9D1}" Directory_="APPDIR" Attributes="0" KeyPath="System.Xml.XPath.XDocument.dll"/>
+    <ROW Component="install.bat" ComponentId="{B2DC22A6-B3D6-4EEB-9910-8A088418B61B}" Directory_="APPDIR" Attributes="0" KeyPath="install.bat" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="install.bat" Component_="install.bat" FileName="install.bat" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\install.bat" SelfReg="false"/>
+    <ROW File="AgentProxy.exe" Component_="AgentProxy.exe" FileName="AGENTP~1.EXE|AgentProxy.exe" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\AgentProxy.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="AgentProxy.exe.config" Component_="install.bat" FileName="AGENTP~1.CON|AgentProxy.exe.config" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\AgentProxy.exe.config" SelfReg="false"/>
+    <ROW File="AgentProxy.InstallLog" Component_="install.bat" FileName="AGENTP~1.INS|AgentProxy.InstallLog" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\AgentProxy.InstallLog" SelfReg="false"/>
+    <ROW File="AgentProxy.pdb" Component_="AgentProxy.exe" FileName="AGENTP~1.PDB|AgentProxy.pdb" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\AgentProxy.pdb" SelfReg="false"/>
+    <ROW File="INIFileParser.dll" Component_="INIFileParser.dll" FileName="INIFIL~1.DLL|INIFileParser.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\INIFileParser.dll" SelfReg="false"/>
+    <ROW File="INIFileParser.xml" Component_="install.bat" FileName="INIFIL~1.XML|INIFileParser.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\INIFileParser.xml" SelfReg="false"/>
+    <ROW File="InstallUtil.InstallLog" Component_="install.bat" FileName="INSTAL~1.INS|InstallUtil.InstallLog" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\InstallUtil.InstallLog" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.Connections.Abstractions.dll" Component_="Microsoft.AspNetCore.Connections.Abstractions.dll" FileName="MICROS~1.DLL|Microsoft.AspNetCore.Connections.Abstractions.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.Connections.Abstractions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.Connections.Abstractions.xml" Component_="install.bat" FileName="MICROS~1.XML|Microsoft.AspNetCore.Connections.Abstractions.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.Connections.Abstractions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.Http.Connections.Client.dll" Component_="Microsoft.AspNetCore.Http.Connections.Client.dll" FileName="MICROS~2.DLL|Microsoft.AspNetCore.Http.Connections.Client.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.Http.Connections.Client.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.Http.Connections.Client.xml" Component_="install.bat" FileName="MICROS~2.XML|Microsoft.AspNetCore.Http.Connections.Client.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.Http.Connections.Client.xml" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.Http.Connections.Common.dll" Component_="Microsoft.AspNetCore.Http.Connections.Common.dll" FileName="MICROS~3.DLL|Microsoft.AspNetCore.Http.Connections.Common.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.Http.Connections.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.Http.Connections.Common.xml" Component_="install.bat" FileName="MICROS~3.XML|Microsoft.AspNetCore.Http.Connections.Common.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.Http.Connections.Common.xml" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Client.Core.dll" Component_="Microsoft.AspNetCore.SignalR.Client.Core.dll" FileName="MICROS~4.DLL|Microsoft.AspNetCore.SignalR.Client.Core.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Client.Core.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Client.Core.xml" Component_="install.bat" FileName="MICROS~4.XML|Microsoft.AspNetCore.SignalR.Client.Core.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Client.Core.xml" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Client.dll" Component_="Microsoft.AspNetCore.SignalR.Client.dll" FileName="MICROS~5.DLL|Microsoft.AspNetCore.SignalR.Client.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Client.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Client.xml" Component_="install.bat" FileName="MICROS~5.XML|Microsoft.AspNetCore.SignalR.Client.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Client.xml" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Common.dll" Component_="Microsoft.AspNetCore.SignalR.Common.dll" FileName="MICROS~6.DLL|Microsoft.AspNetCore.SignalR.Common.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Common.xml" Component_="install.bat" FileName="MICROS~6.XML|Microsoft.AspNetCore.SignalR.Common.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Common.xml" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Protocols.Json.dll" Component_="Microsoft.AspNetCore.SignalR.Protocols.Json.dll" FileName="MICROS~7.DLL|Microsoft.AspNetCore.SignalR.Protocols.Json.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Protocols.Json.dll" SelfReg="false"/>
+    <ROW File="Microsoft.AspNetCore.SignalR.Protocols.Json.xml" Component_="install.bat" FileName="MICROS~7.XML|Microsoft.AspNetCore.SignalR.Protocols.Json.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.AspNetCore.SignalR.Protocols.Json.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Bcl.AsyncInterfaces.dll" Component_="Microsoft.Bcl.AsyncInterfaces.dll" FileName="MICROS~8.DLL|Microsoft.Bcl.AsyncInterfaces.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Bcl.AsyncInterfaces.xml" Component_="install.bat" FileName="MICROS~8.XML|Microsoft.Bcl.AsyncInterfaces.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Component_="Microsoft.Extensions.DependencyInjection.Abstractions.dll" FileName="MICROS~9.DLL|Microsoft.Extensions.DependencyInjection.Abstractions.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.DependencyInjection.Abstractions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.Abstractions.xml" Component_="install.bat" FileName="MICROS~9.XML|Microsoft.Extensions.DependencyInjection.Abstractions.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.DependencyInjection.Abstractions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.dll" Component_="Microsoft.Extensions.DependencyInjection.dll" FileName="MICRO~10.DLL|Microsoft.Extensions.DependencyInjection.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.DependencyInjection.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.DependencyInjection.xml" Component_="install.bat" FileName="MICRO~10.XML|Microsoft.Extensions.DependencyInjection.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.DependencyInjection.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Features.dll" Component_="Microsoft.Extensions.Features.dll" FileName="MICRO~11.DLL|Microsoft.Extensions.Features.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Features.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Features.xml" Component_="install.bat" FileName="MICRO~11.XML|Microsoft.Extensions.Features.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Features.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Logging.Abstractions.dll" Component_="Microsoft.Extensions.Logging.Abstractions.dll" FileName="MICRO~12.DLL|Microsoft.Extensions.Logging.Abstractions.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Logging.Abstractions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Logging.Abstractions.xml" Component_="install.bat" FileName="MICRO~12.XML|Microsoft.Extensions.Logging.Abstractions.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Logging.Abstractions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Logging.dll" Component_="Microsoft.Extensions.Logging.dll" FileName="MICRO~13.DLL|Microsoft.Extensions.Logging.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Logging.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Logging.xml" Component_="install.bat" FileName="MICRO~13.XML|Microsoft.Extensions.Logging.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Logging.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Options.dll" Component_="Microsoft.Extensions.Options.dll" FileName="MICRO~14.DLL|Microsoft.Extensions.Options.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Options.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Options.xml" Component_="install.bat" FileName="MICRO~14.XML|Microsoft.Extensions.Options.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Options.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Primitives.dll" Component_="Microsoft.Extensions.Primitives.dll" FileName="MICRO~15.DLL|Microsoft.Extensions.Primitives.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Primitives.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Primitives.xml" Component_="install.bat" FileName="MICRO~15.XML|Microsoft.Extensions.Primitives.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Extensions.Primitives.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.Registry.dll" Component_="Microsoft.Win32.Registry.dll" FileName="MICRO~16.DLL|Microsoft.Win32.Registry.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Win32.Registry.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.Registry.xml" Component_="install.bat" FileName="MICRO~16.XML|Microsoft.Win32.Registry.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Win32.Registry.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.dll" Component_="Microsoft.Win32.SystemEvents.dll" FileName="MICRO~17.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.xml" Component_="install.bat" FileName="MICRO~17.XML|Microsoft.Win32.SystemEvents.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Microsoft.Win32.SystemEvents.xml" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.xml" Component_="install.bat" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Newtonsoft.Json.xml" SelfReg="false"/>
+    <ROW File="Ninject.dll" Component_="Ninject.dll" FileName="Ninject.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Ninject.dll" SelfReg="false"/>
+    <ROW File="Ninject.xml" Component_="install.bat" FileName="Ninject.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\Ninject.xml" SelfReg="false"/>
+    <ROW File="settings.ini" Component_="install.bat" FileName="settings.ini" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\settings.ini" SelfReg="false"/>
+    <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Buffers.dll" SelfReg="false"/>
+    <ROW File="System.Buffers.xml" Component_="install.bat" FileName="SYSTEM~1.XML|System.Buffers.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Buffers.xml" SelfReg="false"/>
+    <ROW File="System.Configuration.ConfigurationManager.dll" Component_="System.Configuration.ConfigurationManager.dll" FileName="SYSTEM~2.DLL|System.Configuration.ConfigurationManager.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Configuration.ConfigurationManager.dll" SelfReg="false"/>
+    <ROW File="System.Configuration.ConfigurationManager.xml" Component_="install.bat" FileName="SYSTEM~2.XML|System.Configuration.ConfigurationManager.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Configuration.ConfigurationManager.xml" SelfReg="false"/>
+    <ROW File="System.Data.Common.dll" Component_="System.Data.Common.dll" FileName="SYSTEM~3.DLL|System.Data.Common.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Data.Common.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.DiagnosticSource.dll" Component_="System.Diagnostics.DiagnosticSource.dll" FileName="SYSTEM~4.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.DiagnosticSource.xml" Component_="install.bat" FileName="SYSTEM~3.XML|System.Diagnostics.DiagnosticSource.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.DiagnosticSource.xml" SelfReg="false"/>
+    <ROW File="System.Diagnostics.EventLog.dll" Component_="System.Diagnostics.EventLog.dll" FileName="SYSTEM~5.DLL|System.Diagnostics.EventLog.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.EventLog.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.EventLog.xml" Component_="install.bat" FileName="SYSTEM~4.XML|System.Diagnostics.EventLog.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.EventLog.xml" SelfReg="false"/>
+    <ROW File="System.Diagnostics.PerformanceCounter.dll" Component_="System.Diagnostics.PerformanceCounter.dll" FileName="SYSTEM~6.DLL|System.Diagnostics.PerformanceCounter.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.PerformanceCounter.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.PerformanceCounter.xml" Component_="install.bat" FileName="SYSTEM~5.XML|System.Diagnostics.PerformanceCounter.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.PerformanceCounter.xml" SelfReg="false"/>
+    <ROW File="System.Diagnostics.StackTrace.dll" Component_="System.Diagnostics.StackTrace.dll" FileName="SYSTEM~7.DLL|System.Diagnostics.StackTrace.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.StackTrace.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.Tracing.dll" Component_="System.Diagnostics.Tracing.dll" FileName="SYSTEM~8.DLL|System.Diagnostics.Tracing.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Diagnostics.Tracing.dll" SelfReg="false"/>
+    <ROW File="System.Globalization.Extensions.dll" Component_="System.Globalization.Extensions.dll" FileName="SYSTEM~9.DLL|System.Globalization.Extensions.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Globalization.Extensions.dll" SelfReg="false"/>
+    <ROW File="System.IO.Compression.dll" Component_="System.IO.Compression.dll" FileName="SYSTE~10.DLL|System.IO.Compression.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.IO.Compression.dll" SelfReg="false"/>
+    <ROW File="System.IO.Pipelines.dll" Component_="System.IO.Pipelines.dll" FileName="SYSTE~11.DLL|System.IO.Pipelines.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.IO.Pipelines.dll" SelfReg="false"/>
+    <ROW File="System.IO.Pipelines.xml" Component_="install.bat" FileName="SYSTEM~6.XML|System.IO.Pipelines.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.IO.Pipelines.xml" SelfReg="false"/>
+    <ROW File="System.Memory.dll" Component_="System.Memory.dll" FileName="SYSTE~12.DLL|System.Memory.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Memory.dll" SelfReg="false"/>
+    <ROW File="System.Memory.xml" Component_="install.bat" FileName="SYSTEM~7.XML|System.Memory.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Memory.xml" SelfReg="false"/>
+    <ROW File="System.Net.Http.dll" Component_="System.Net.Http.dll" FileName="SYSTE~13.DLL|System.Net.Http.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Net.Http.dll" SelfReg="false"/>
+    <ROW File="System.Net.Sockets.dll" Component_="System.Net.Sockets.dll" FileName="SYSTE~14.DLL|System.Net.Sockets.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Net.Sockets.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.dll" Component_="System.Numerics.Vectors.dll" FileName="SYSTE~15.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Numerics.Vectors.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.xml" Component_="install.bat" FileName="SYSTEM~8.XML|System.Numerics.Vectors.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Numerics.Vectors.xml" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="System.Runtime.CompilerServices.Unsafe.dll" FileName="SYSTE~16.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.xml" Component_="install.bat" FileName="SYSTEM~9.XML|System.Runtime.CompilerServices.Unsafe.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Runtime.CompilerServices.Unsafe.xml" SelfReg="false"/>
+    <ROW File="System.Runtime.Serialization.Primitives.dll" Component_="System.Runtime.Serialization.Primitives.dll" FileName="SYSTE~17.DLL|System.Runtime.Serialization.Primitives.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Runtime.Serialization.Primitives.dll" SelfReg="false"/>
+    <ROW File="System.Security.AccessControl.dll" Component_="System.Security.AccessControl.dll" FileName="SYSTE~18.DLL|System.Security.AccessControl.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.AccessControl.dll" SelfReg="false"/>
+    <ROW File="System.Security.AccessControl.xml" Component_="install.bat" FileName="SYSTE~10.XML|System.Security.AccessControl.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.AccessControl.xml" SelfReg="false"/>
+    <ROW File="System.Security.Cryptography.Algorithms.dll" Component_="System.Security.Cryptography.Algorithms.dll" FileName="SYSTE~19.DLL|System.Security.Cryptography.Algorithms.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.Cryptography.Algorithms.dll" SelfReg="false"/>
+    <ROW File="System.Security.Permissions.dll" Component_="System.Security.Permissions.dll" FileName="SYSTE~20.DLL|System.Security.Permissions.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.Permissions.dll" SelfReg="false"/>
+    <ROW File="System.Security.Permissions.xml" Component_="install.bat" FileName="SYSTE~11.XML|System.Security.Permissions.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.Permissions.xml" SelfReg="false"/>
+    <ROW File="System.Security.Principal.Windows.dll" Component_="System.Security.Principal.Windows.dll" FileName="SYSTE~21.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.Principal.Windows.dll" SelfReg="false"/>
+    <ROW File="System.Security.Principal.Windows.xml" Component_="install.bat" FileName="SYSTE~12.XML|System.Security.Principal.Windows.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.Principal.Windows.xml" SelfReg="false"/>
+    <ROW File="System.Security.SecureString.dll" Component_="System.Security.SecureString.dll" FileName="SYSTE~22.DLL|System.Security.SecureString.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Security.SecureString.dll" SelfReg="false"/>
+    <ROW File="System.ServiceProcess.ServiceController.dll" Component_="System.ServiceProcess.ServiceController.dll" FileName="SYSTE~23.DLL|System.ServiceProcess.ServiceController.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.ServiceProcess.ServiceController.dll" SelfReg="false"/>
+    <ROW File="System.ServiceProcess.ServiceController.xml" Component_="install.bat" FileName="SYSTE~13.XML|System.ServiceProcess.ServiceController.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.ServiceProcess.ServiceController.xml" SelfReg="false"/>
+    <ROW File="System.Text.Encodings.Web.dll" Component_="System.Text.Encodings.Web.dll" FileName="SYSTE~24.DLL|System.Text.Encodings.Web.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Text.Encodings.Web.dll" SelfReg="false"/>
+    <ROW File="System.Text.Encodings.Web.xml" Component_="install.bat" FileName="SYSTE~14.XML|System.Text.Encodings.Web.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Text.Encodings.Web.xml" SelfReg="false"/>
+    <ROW File="System.Text.Json.dll" Component_="System.Text.Json.dll" FileName="SYSTE~25.DLL|System.Text.Json.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Text.Json.dll" SelfReg="false"/>
+    <ROW File="System.Text.Json.xml" Component_="install.bat" FileName="SYSTE~15.XML|System.Text.Json.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Text.Json.xml" SelfReg="false"/>
+    <ROW File="System.Threading.Channels.dll" Component_="System.Threading.Channels.dll" FileName="SYSTE~26.DLL|System.Threading.Channels.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Threading.Channels.dll" SelfReg="false"/>
+    <ROW File="System.Threading.Channels.xml" Component_="install.bat" FileName="SYSTE~16.XML|System.Threading.Channels.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Threading.Channels.xml" SelfReg="false"/>
+    <ROW File="System.Threading.Overlapped.dll" Component_="System.Threading.Overlapped.dll" FileName="SYSTE~27.DLL|System.Threading.Overlapped.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Threading.Overlapped.dll" SelfReg="false"/>
+    <ROW File="System.Threading.Tasks.Extensions.dll" Component_="System.Threading.Tasks.Extensions.dll" FileName="SYSTE~28.DLL|System.Threading.Tasks.Extensions.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Threading.Tasks.Extensions.dll" SelfReg="false"/>
+    <ROW File="System.Threading.Tasks.Extensions.xml" Component_="install.bat" FileName="SYSTE~17.XML|System.Threading.Tasks.Extensions.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Threading.Tasks.Extensions.xml" SelfReg="false"/>
+    <ROW File="System.ValueTuple.dll" Component_="System.ValueTuple.dll" FileName="SYSTE~29.DLL|System.ValueTuple.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.ValueTuple.dll" SelfReg="false"/>
+    <ROW File="System.ValueTuple.xml" Component_="install.bat" FileName="SYSTE~18.XML|System.ValueTuple.xml" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.ValueTuple.xml" SelfReg="false"/>
+    <ROW File="System.Xml.XPath.XDocument.dll" Component_="System.Xml.XPath.XDocument.dll" FileName="SYSTE~30.DLL|System.Xml.XPath.XDocument.dll" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\System.Xml.XPath.XDocument.dll" SelfReg="false"/>
+    <ROW File="uninstall.bat" Component_="install.bat" FileName="UNINST~1.BAT|uninstall.bat" Attributes="0" SourcePath="..\..\..\..\..\source\repos\tl_project_signalr\AgentProxy\AgentProxy\bin\Release\uninstall.bat" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files" Languages="ru" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Удаление извлеченных файлов из архива" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Удаление извлеченных файлов из архива" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractFiles" Description="Извлечение файлов из архива" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Извлечение файлов из архива" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractFiles" Type="1" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+    <ROW Action="viewer.exe" Type="2" Source="viewer.exe" Target="install.bat"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
+    <ROW Feature_="MainFeature" Component_="install.bat"/>
+    <ROW Feature_="MainFeature" Component_="AgentProxy.exe"/>
+    <ROW Feature_="MainFeature" Component_="INIFileParser.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.Connections.Abstractions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.Http.Connections.Client.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.Http.Connections.Common.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.SignalR.Client.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.SignalR.Client.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.SignalR.Common.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.AspNetCore.SignalR.Protocols.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.DependencyInjection.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Features.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Logging.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Options.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Primitives.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.Registry.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll"/>
+    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="Ninject.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Buffers.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Configuration.ConfigurationManager.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.Common.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.EventLog.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.PerformanceCounter.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.StackTrace.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.Tracing.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Globalization.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.IO.Compression.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.IO.Pipelines.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Memory.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Net.Http.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Net.Sockets.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Vectors.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.Serialization.Primitives.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.Algorithms.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.SecureString.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.ServiceProcess.ServiceController.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Text.Encodings.Web.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Text.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Threading.Channels.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Threading.Overlapped.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.ValueTuple.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Xml.XPath.XDocument.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
+    <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
+    <ROW Action="viewer.exe" Condition="( NOT Installed )" Sequence="5935"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="Нельзя установить [ProductName] на [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="Нельзя установить [ProductName] на [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="Нельзя установить [ProductName] на [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="Этот пакет можно запускать только из загрузчика." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] не может быть установлен на [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
+    <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
+    <ROW Registry="LZMA" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA" Name="\"/>
+    <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]" Name="\"/>
+    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
+    <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="\"/>
+    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>
